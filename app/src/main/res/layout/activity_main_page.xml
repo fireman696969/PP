@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainPage"
+    >
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#0D6EBC"
+        >
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+
+                >
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:src="@drawable/baseline_settings_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.068"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.023"></ImageButton>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+
+                    android:text="Welcome back Elon"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.456"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.022" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_local_police_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.898"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.023" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView"
+            app:layout_constraintVertical_bias="0.0">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TableRow android:layout_margin="20dp">
+
+                    <Button
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/btn_red"
+                        android:text="Catalog" />
+
+                    <Button
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/btn_green"
+
+                        android:text="My reports" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp">
+
+                    <Button
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/btn_yellow"
+                        android:text="New Report" />
+
+                    <Button
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/btn_orange"
+                        android:text="Get Advice" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp">
+
+                    <Button
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/btn_purple"
+                        android:text="Q and A" />
+
+                    <Button
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/btn_magenta"
+                        android:text="My Profile" />
+                </TableRow>
+
+            </TableLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2"
+            app:layout_constraintVertical_bias="0.347">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:text="Our Idea"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="20dp"
+                    android:text="Our innovative app aims to empower everyday citizens as stewards of their environment. Through a user-friendly interface, individuals can actively participate in maintaining the public space's cleanliness by reporting instances of pollution. Each report serves as a vital contribution towards environmental preservation. To streamline the reporting process, users fill out a detailed Report-card explaining the specific polluting law that has been violated. As citizens consistently engage in this civic duty, they accumulate points, reflecting their commitment to a cleaner community. These earned points contribute to a personal profile, fostering a sense of accomplishment and civic responsibility. Moreover, citizens have the opportunity to redeem accumulated points for various rewards, fostering a culture of positive environmental engagement. Additionally, our app encourages users to go beyond reporting by offering tasks or chores that, when completed, earn them additional points. Recognizing the significant impact of individual efforts, citizens can even apply their points to receive tax deductions, aligning our app with broader governmental initiatives for environmental sustainability. Our vision is to create a digital platform that not only raises awareness about environmental issues but also actively involves citizens in fostering a cleaner, healthier, and more sustainable future." />
+
+
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
