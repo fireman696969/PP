@@ -1,4 +1,4 @@
-package com.example.pollutionpals;
+package com.example.pollutionpals.UI.SignUp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.pollutionpals.Data.DB.MyDatabaseHelper;
+import com.example.pollutionpals.R;
+import com.example.pollutionpals.UI.LoginActivity.LoginActivity;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
 

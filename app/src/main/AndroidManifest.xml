@@ -13,13 +13,13 @@
         android:theme="@style/Theme.PollutionPals"
         tools:targetApi="31">
         <activity
-            android:name=".MainPage"
+            android:name=".UI.MainPage.MainPage"
             android:exported="false" />
         <activity
-            android:name=".SignUp"
+            android:name=".UI.SignUp.SignUp"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".UI.LoginActivity.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

@@ -1,4 +1,4 @@
-package com.example.pollutionpals;
+package com.example.pollutionpals.Data.DB;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,7 +9,7 @@ import android.util.Log;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 
-class MyDatabaseHelper extends SQLiteOpenHelper {
+public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
     private static final String DATABASE_NAME = "Citizens.db";
@@ -28,7 +28,7 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_Pass = "Pass";
 
 
-    MyDatabaseHelper(@Nullable Context context) {
+    public MyDatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
     }
@@ -52,7 +52,7 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void AddCitizen(String Fname, String Lname, int Age, String Address, String Email, String Id, String Pass){
+    public void AddCitizen(String Fname, String Lname, int Age, String Address, String Email, String Id, String Pass){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -74,7 +74,7 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    Cursor readAllData(){
+    public Cursor readAllData(){
         String query = "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -85,7 +85,7 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    void updateData(String row_id, String Fname, String Lname, int Age, String Address, String Email, String Pass, String Id){
+    public void updateData(String row_id, String Fname, String Lname, int Age, String Address, String Email, String Pass, String Id){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_Fname, Fname);
@@ -105,7 +105,7 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    void deleteOneRow(String row_id){
+    public void deleteOneRow(String row_id){
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
         if(result == -1){
@@ -115,11 +115,11 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    void deleteAllData(){
+    public void deleteAllData(){
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME);
     }
-    Boolean CheckCitizen(String IdNumber, String Password) {
+    public Boolean CheckCitizen(String IdNumber, String Password) {
         boolean result = false;
         try {
             String query = " SELECT EXISTS (\n" +
@@ -142,7 +142,7 @@ class MyDatabaseHelper extends SQLiteOpenHelper {
         }
         return result;
     }
-    boolean CheckIfAlreadyExists(String IdNumber, String Email){
+    public boolean CheckIfAlreadyExists(String IdNumber, String Email){
         boolean result = false;
         try {
             String query = " SELECT EXISTS (\n" +

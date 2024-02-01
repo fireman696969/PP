@@ -1,4 +1,4 @@
-package com.example.pollutionpals;
+package com.example.pollutionpals.UI.LoginActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,9 +10,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.pollutionpals.UI.MainPage.MainPage;
+import com.example.pollutionpals.Data.DB.MyDatabaseHelper;
+import com.example.pollutionpals.R;
+import com.example.pollutionpals.UI.SignUp.SignUp;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText  etIdNumber, etPassword;
     private Button btnLogin, btnSignUp;
+    private LoginModule loginModule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +31,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnSignUp = findViewById(R.id.btnSignUp);
         btnLogin.setOnClickListener(this);
         btnSignUp.setOnClickListener(this);
+        loginModule = new LoginModule(this);
+
 
 
 
@@ -36,29 +44,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         if(btnLogin == view){
-                try {
-                    if (etIdNumber.getText().toString().length() == 0 ||
-                            etPassword.getText().toString().length() == 0) {
-                        Toast.makeText(this, "Fill ALL Fields", Toast.LENGTH_SHORT).show();
-                    } else {
-                        MyDatabaseHelper Citizens = new MyDatabaseHelper(this);
-                        if (Citizens.CheckCitizen(etIdNumber.getText().toString(), etPassword.getText().toString())) {
-                            Toast.makeText(this, "exists", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(this, MainPage.class);
-                            startActivity(intent);
-                        } else {
-                            Toast.makeText(this, "does not exist", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-                catch(Exception e){
-                    Log.d("exception" , " here");
-                }
+            loginModule.CheckCitizen(etIdNumber,etPassword);
         }
         if(btnSignUp == view){
             Intent intent = new Intent(this, SignUp.class);
             startActivity(intent);
         }
+
 
     }
 }
