@@ -3,9 +3,12 @@ package com.example.pollutionpals.UI.LoginActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.pollutionpals.Data.DB.MyDatabaseHelper;
 import com.example.pollutionpals.Data.Repository.Repository;
@@ -44,8 +47,15 @@ public class LoginModule {
             MyDatabaseHelper Citizens = new MyDatabaseHelper(context);
             if (Citizens.CheckCitizen(etIdNumber.getText().toString(), etPassword.getText().toString())) {
                 Toast.makeText(context, "exists", Toast.LENGTH_SHORT).show();
-//                SetCredentials(new CheckBox(context),  );
-//                צריך להכניס מהדאטאבייס את הנתונים
+                Cursor cursor = Citizens.getUserById(etIdNumber.getText().toString());
+                String fname = cursor.getString(0);
+                String lname = cursor.getString(1);
+                int age = cursor.getInt(2);
+                String address = cursor.getString(3);
+                String email = cursor.getString(4);
+                String id = cursor.getString(5);
+                String pass = cursor.getString(6);
+                SetCredentials(new CheckBox(context),fname,lname,age,address,email,id,pass);
                 Intent intent = new Intent(context, MainPage.class);
                 context.startActivity(intent);
             } else {

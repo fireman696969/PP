@@ -84,6 +84,14 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
         return cursor;
     }
+    public Cursor getUserById(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {COLUMN_Fname, COLUMN_Lname, COLUMN_Age, COLUMN_Address, COLUMN_Email, COLUMN_Id, COLUMN_Pass};
+        String selection = COLUMN_CitizenNum + "=?";
+        String[] selectionArgs = {id};
+        return db.query(TABLE_NAME, projection, selection, selectionArgs, null, null, null);
+    }
+
 
     public void updateData(String row_id, String Fname, String Lname, int Age, String Address, String Email, String Pass, String Id){
         SQLiteDatabase db = this.getWritableDatabase();
