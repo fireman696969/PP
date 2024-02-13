@@ -14,14 +14,14 @@ public class MainModule {
     public MainModule(Context context) {
         rep = new Repository(context);
         this.context = context;
-        sharedPreference = context.getSharedPreferences("user", Context.MODE_PRIVATE);
+//        sharedPreference = context.getSharedPreferences("user", Context.MODE_PRIVATE);
     }
-    public String GetUserName(){
-        String Username = sharedPreference.getString("UserName", "UserName");
-
-
-        return Username;
-    }
+//    public String GetUserName(){
+////        String Username = sharedPreference.getString("UserName", "UserName");
+//
+//
+//        return Username;
+//    }
 
 
 }

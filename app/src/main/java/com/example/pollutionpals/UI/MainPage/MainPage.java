@@ -19,7 +19,7 @@ public class MainPage extends AppCompatActivity {
         setContentView(R.layout.activity_main_page);
         tvUserName = findViewById(R.id.tvUserName);
         mainModule = new MainModule(this);
-        tvUserName.setText(mainModule.GetUserName());
+//        tvUserName.setText(mainModule.GetUserName());
 
     }
 }
