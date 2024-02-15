@@ -48,14 +48,16 @@ public class LoginModule {
             if (Citizens.CheckCitizen(etIdNumber.getText().toString(), etPassword.getText().toString())) {
                 Toast.makeText(context, "exists", Toast.LENGTH_SHORT).show();
                 Cursor cursor = Citizens.getUserById(etIdNumber.getText().toString());
-//                String fname = cursor.getString(0);
-//                String lname = cursor.getString(1);
-//                int age = cursor.getInt(2);
-//                String address = cursor.getString(3);
-//                String email = cursor.getString(4);
-//                String id = cursor.getString(5);
-//                String pass = cursor.getString(6);
-//                SetCredentials(new CheckBox(context),fname,lname,age,address,email,id,pass);
+
+                cursor.moveToFirst();
+                String fname = cursor.getString(1);
+                String lname = cursor.getString(2);
+                int age = cursor.getInt(3);
+                String email = cursor.getString(4);
+                String address = cursor.getString(5);
+                String id = cursor.getString(6);
+                String pass = cursor.getString(7);
+                SetCredentials(new CheckBox(context),fname,lname,age,address,email,id,pass);
                 Intent intent = new Intent(context, MainPage.class);
                 context.startActivity(intent);
             } else {

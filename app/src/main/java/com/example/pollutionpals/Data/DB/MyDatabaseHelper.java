@@ -86,10 +86,24 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     }
     public Cursor getUserById(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] projection = {COLUMN_Fname, COLUMN_Lname, COLUMN_Age, COLUMN_Address, COLUMN_Email, COLUMN_Id, COLUMN_Pass};
-        String selection = COLUMN_CitizenNum + "=?";
-        String[] selectionArgs = {id};
-        return db.query(TABLE_NAME, projection, selection, selectionArgs, null, null, null);
+        Cursor cursor = readAllData();
+        cursor.moveToFirst();
+        int n = cursor.getCount();
+        for (int i = 0; i < n; i++) {
+            String idn = cursor.getString(6);
+            if(id.equals(idn)){
+                break;
+            }
+            else{
+                cursor.moveToFirst();
+            }
+        }
+        return cursor;
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        String[] projection = {COLUMN_Fname, COLUMN_Lname, COLUMN_Age, COLUMN_Address, COLUMN_Email, COLUMN_Id, COLUMN_Pass};
+//        String selection = COLUMN_CitizenNum + "=?";
+//        String[] selectionArgs = {id};
+//        return db.query(TABLE_NAME, projection, selection, selectionArgs, null, null, null);
     }
 
 

@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         if(btnLogin == view){
             loginModule.CheckCitizen(etIdNumber,etPassword);
+
         }
         if(btnSignUp == view){
             Intent intent = new Intent(this, SignUp.class);
