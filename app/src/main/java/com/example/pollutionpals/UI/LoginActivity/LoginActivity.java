@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pollutionpals.UI.MainPage.MainPage;
@@ -19,6 +20,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText  etIdNumber, etPassword;
     private Button btnLogin, btnSignUp;
     private LoginModule loginModule;
+    private TextView tvUserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnLogin.setOnClickListener(this);
         btnSignUp.setOnClickListener(this);
         loginModule = new LoginModule(this);
-
+        tvUserName = findViewById(R.id.tvUserName);
 
 
 

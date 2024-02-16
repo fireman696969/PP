@@ -1,16 +1,30 @@
 package com.example.pollutionpals.UI.MyProfilePage;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static androidx.core.content.ContextCompat.startActivity;
 
-import android.os.Bundle;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.widget.TextView;
 
-import com.example.pollutionpals.R;
+import com.example.pollutionpals.Data.Repository.Repository;
+import com.example.pollutionpals.UI.LoginActivity.LoginActivity;
 
-public class MyProfileModule extends AppCompatActivity {
+public class MyProfileModule {
+    Repository rep;
+    public Context context;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_profile_module);
+    public MyProfileModule(Context context) {
+        rep = new Repository(context);
+        this.context = context;
+    }
+    public void LogOut(){
+        SharedPreferences sharedPreference = context.getSharedPreferences("user", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreference.edit();
+
+        editor.clear();
+        editor.apply();
+
+
     }
 }

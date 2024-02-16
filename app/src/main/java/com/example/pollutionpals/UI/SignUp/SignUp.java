@@ -75,6 +75,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                         );
 
             }
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
         }
         if(btnMoveToLog == view){
             Intent intent = new Intent(this, LoginActivity.class);

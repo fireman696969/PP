@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -60,6 +61,7 @@ public class LoginModule {
                 SetCredentials(new CheckBox(context),fname,lname,age,address,email,id,pass);
                 Intent intent = new Intent(context, MainPage.class);
                 context.startActivity(intent);
+
             } else {
                 Toast.makeText(context, "does not exist", Toast.LENGTH_SHORT).show();
             }

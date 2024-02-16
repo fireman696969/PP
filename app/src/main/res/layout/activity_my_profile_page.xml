@@ -1,9 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.MyProfilePage.MyProfilePage">
+    tools:context=".UI.MyProfilePage.MyProfilePage"
+    >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Title -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Profile"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"/>
+
+    <!-- Points Circle -->
+    <RelativeLayout
+        android:id="@+id/pointsCircle"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/tvTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/circle_background">
+
+        <!-- Points Text -->
+        <TextView
+            android:id="@+id/tvPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <!-- Recent Report Line -->
+    <TextView
+        android:id="@+id/tvRecentReport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recent Report: Sample Report"
+        android:layout_below="@id/pointsCircle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:textSize="20dp"/>
+
+
+    <!-- All Reports Button -->
+    <Button
+        android:id="@+id/btnAllReports"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="All Reports"
+        android:layout_below="@id/tvRecentReport"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"/>
+
+    <!-- Update Button -->
+    <Button
+        android:id="@+id/btnUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:layout_below="@id/btnAllReports"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"/>
+
+    <!-- LogOut Button -->
+    <Button
+        android:id="@+id/btnLogOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log Out"
+        android:layout_below="@id/btnUpdate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"/>
+
+
+
+
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="My Profile"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_margin="20dp"-->
+<!--        android:textColor="#000000"-->
+<!--        android:textSize="30dp"-->
+<!--        android:textStyle="bold"-->
+<!--        />-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        -->
+<!--        >-->
+
+
+<!--    </LinearLayout>-->
+
+
+</RelativeLayout>
