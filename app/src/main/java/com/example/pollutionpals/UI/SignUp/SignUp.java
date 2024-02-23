@@ -73,10 +73,11 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                         etId.getText().toString(),
                         etPass.getText().toString()
                         );
-
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
             }
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
+
+
         }
         if(btnMoveToLog == view){
             Intent intent = new Intent(this, LoginActivity.class);
