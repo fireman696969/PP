@@ -1,5 +1,6 @@
 package com.example.pollutionpals.UI.LoginActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,15 +10,24 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.pollutionpals.Data.DB.MyDatabaseHelper;
 import com.example.pollutionpals.Data.Repository.Repository;
 import com.example.pollutionpals.UI.MainPage.MainPage;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginModule {
     Repository rep;
     public Context context;
+    private FirebaseAuth mAuth;
+
+
 
     public LoginModule(Context context) {
         rep = new Repository(context);
@@ -66,6 +76,30 @@ public class LoginModule {
                 Toast.makeText(context, "does not exist", Toast.LENGTH_SHORT).show();
             }
         }
+
+    }
+    public void AddFirebase( EditText et1, EditText et2){
+        mAuth = FirebaseAuth.getInstance();
+        String id = et1.getText().toString().trim();
+        String pass = et2.getText().toString().trim();
+
+        mAuth.createUserWithEmailAndPassword(id, pass)
+                .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(context, "Successful", Toast.LENGTH_SHORT).show();
+
+                            FirebaseUser user = mAuth.getCurrentUser();
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+
+                            Toast.makeText(context, "exists", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
 
     }
 }

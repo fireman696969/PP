@@ -37,16 +37,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         tvUserName = findViewById(R.id.tvUserName);
 
 
-
-
-
-
     }
 
     @Override
     public void onClick(View view) {
         if(btnLogin == view){
             loginModule.CheckCitizen(etIdNumber,etPassword);
+            loginModule.AddFirebase(etIdNumber,etPassword);
 
         }
         if(btnSignUp == view){
