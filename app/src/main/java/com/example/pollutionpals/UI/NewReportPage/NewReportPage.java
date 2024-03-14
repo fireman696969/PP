@@ -11,22 +11,34 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import com.example.pollutionpals.R;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.LinkedList;
+import java.util.List;
 
 public class NewReportPage extends AppCompatActivity implements View.OnClickListener {
     ImageView imgvCamera;
     NewReportModule newReportModule;
     static final int REQUEST_CODE = 22;
-    EditText edDate;
+    EditText edDate, edDescripton, edLocation;
     int y=0,m=0,d=0;
+    Spinner pointsSpinner;
+    Button btnSubmit;
+
 
 
 
@@ -34,6 +46,7 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_report_page);
+        NewReportModule newReoprtsModule = new NewReportModule(this);
 
         imgvCamera = findViewById(R.id.imgvCamera);
         imgvCamera.setOnClickListener(this);
@@ -43,6 +56,35 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
         edDate = findViewById(R.id.edDate);
         edDate.setOnClickListener(this);
         edDate.setRawInputType(TYPE_NULL);
+
+        pointsSpinner = findViewById(R.id.spinnerPoints);
+        List<Integer> lst = new LinkedList<>();
+        for (int i = 0; i < 101; i++) {
+            lst.add(i);
+        }
+
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,lst);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        pointsSpinner.setAdapter(adapter);
+        pointsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        btnSubmit = findViewById(R.id.btnSubmit);
+        btnSubmit.setOnClickListener(this);
+
+        edDescripton = findViewById(R.id.edDiscription);
+        edLocation = findViewById(R.id.edLocation);
+
 
     }
 
@@ -85,6 +127,23 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
                     d= i2;
                 }
             });
+        }
+        if(btnSubmit == view){
+            if(edDescripton.getText().toString().equals("")){
+                Toast.makeText(this, "Add a Description", Toast.LENGTH_SHORT).show();
+            }
+            else if(edLocation.getText().toString().equals("")){
+                Toast.makeText(this, "Add the location", Toast.LENGTH_SHORT).show();
+            }
+            else if( edDate.getText().toString().equals("")){
+                Toast.makeText(this, "Pick a Date", Toast.LENGTH_SHORT).show();
+            }
+            else if(Integer.parseInt(pointsSpinner.getSelectedItem().toString()) == 0){
+                Toast.makeText(this, "Estimate points", Toast.LENGTH_SHORT).show();
+            }
+            else{
+
+            }
         }
 
     }

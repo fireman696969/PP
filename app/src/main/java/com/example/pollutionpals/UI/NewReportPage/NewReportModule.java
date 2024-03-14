@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.example.pollutionpals.Data.Repository.Repository;
 
+import java.util.ArrayList;
+
 public class NewReportModule {
 
     Repository rep;
@@ -17,5 +19,6 @@ public class NewReportModule {
 
 
     }
+
 
 }
