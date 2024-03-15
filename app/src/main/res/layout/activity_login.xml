@@ -24,7 +24,8 @@
         android:layout_height="wrap_content"
         android:hint="ID Number"
         android:layout_below="@id/tvAppIntroduction"
-        android:layout_marginTop="32dp"/>
+        android:layout_marginTop="32dp"
+        android:inputType="number"/>
 
     <EditText
         android:id="@+id/etPassword"

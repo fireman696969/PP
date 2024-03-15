@@ -16,16 +16,16 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.example.pollutionpals.Data.DB.MyDatabaseHelper;
 import com.example.pollutionpals.Data.Repository.Repository;
 import com.example.pollutionpals.UI.MainPage.MainPage;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+//import com.google.android.gms.tasks.OnCompleteListener;
+//import com.google.android.gms.tasks.Task;
+//import com.google.firebase.auth.AuthResult;
+//import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.auth.FirebaseUser;
 
 public class LoginModule {
     Repository rep;
     public Context context;
-    private FirebaseAuth mAuth;
+//    private FirebaseAuth mAuth;
 
 
 
@@ -35,14 +35,13 @@ public class LoginModule {
     }
 
 
-    public void SetCredentials(CheckBox checkbox, String Fname, String Lname, int Age, String Address, String Email, String Id, String Pass) {
+    public void SetCredentials(CheckBox checkbox, String Fullname, int Age, int Points, String Id, String Pass) {
         SharedPreferences sharedPreference = context.getSharedPreferences("user", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreference.edit();
-        String userName = Fname + " " + Lname;
-        editor.putString("UserName", userName);
-        editor.putString("Email", Email);
+
+        editor.putString("UserName", Fullname);
         editor.putInt("Age", Age);
-        editor.putString("Address", Address);
+        editor.putInt("Points",Points);
         editor.putString("Id", Id);
         editor.putString("Pass", Pass);
         editor.apply();
@@ -61,14 +60,12 @@ public class LoginModule {
                 Cursor cursor = Citizens.getUserById(etIdNumber.getText().toString());
 
                 cursor.moveToFirst();
-                String fname = cursor.getString(1);
-                String lname = cursor.getString(2);
-                int age = cursor.getInt(3);
-                String email = cursor.getString(4);
-                String address = cursor.getString(5);
-                String id = cursor.getString(6);
-                String pass = cursor.getString(7);
-                SetCredentials(new CheckBox(context),fname,lname,age,address,email,id,pass);
+                String fullname = cursor.getString(1);
+                int age = cursor.getInt(2);
+                int points = cursor.getInt(3);
+                String id = cursor.getString(4);
+                String pass = cursor.getString(5);
+                SetCredentials(new CheckBox(context),fullname,age,points,id,pass);
                 Intent intent = new Intent(context, MainPage.class);
                 context.startActivity(intent);
 
@@ -78,28 +75,28 @@ public class LoginModule {
         }
 
     }
-    public void AddFirebase( EditText et1, EditText et2){
-        mAuth = FirebaseAuth.getInstance();
-        String id = et1.getText().toString().trim();
-        String pass = et2.getText().toString().trim();
-
-        mAuth.createUserWithEmailAndPassword(id, pass)
-                .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(context, "Successful", Toast.LENGTH_SHORT).show();
-
-                            FirebaseUser user = mAuth.getCurrentUser();
-
-                        } else {
-                            // If sign in fails, display a message to the user.
-
-                            Toast.makeText(context, "exists", Toast.LENGTH_SHORT).show();
-
-                        }
-                    }
-                });
-
-    }
+//    public void AddFirebase( EditText et1, EditText et2){
+//        mAuth = FirebaseAuth.getInstance();
+//        String id = et1.getText().toString().trim();
+//        String pass = et2.getText().toString().trim();
+//
+//        mAuth.createUserWithEmailAndPassword(id, pass)
+//                .addOnCompleteListener((Activity) context, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            Toast.makeText(context, "Successful", Toast.LENGTH_SHORT).show();
+//
+//                            FirebaseUser user = mAuth.getCurrentUser();
+//
+//                        } else {
+//                            // If sign in fails, display a message to the user.
+//
+//                            Toast.makeText(context, "exists", Toast.LENGTH_SHORT).show();
+//
+//                        }
+//                    }
+//                });
+//
+//    }
 }

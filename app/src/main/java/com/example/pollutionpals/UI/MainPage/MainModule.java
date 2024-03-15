@@ -18,6 +18,8 @@ public class MainModule {
     }
     public String GetUserName(){
         String Username = sharedPreference.getString("UserName", "UserName");
+
+
         return Username;
     }
 

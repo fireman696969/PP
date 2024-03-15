@@ -9,7 +9,7 @@ public class Repository {
     public Repository(Context context){
         DbCitizens = new MyDatabaseHelper(context);
     }
-    public void AddCitizen(String Fname, String Lname, int Age, String Address, String Email, String Id, String Pass){
-        DbCitizens.AddCitizen(Fname, Lname, Age , Address , Email , Id, Pass);
+    public void AddCitizen(String Fullname, int Age, String Id, String Pass){
+        DbCitizens.AddCitizen(Fullname, Age , Id, Pass);
     }
 }

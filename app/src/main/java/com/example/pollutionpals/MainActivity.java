@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.pollutionpals.Data.DB.MyDatabaseHelper;
 import com.example.pollutionpals.UI.LoginActivity.LoginActivity;
 import com.example.pollutionpals.UI.MainPage.MainPage;
 import com.example.pollutionpals.UI.SignUp.SignUp;
@@ -21,6 +22,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         btnSignUp = findViewById(R.id.btnSignUp);
         btnSignUp.setOnClickListener(this);
+        MyDatabaseHelper dbHelper = new MyDatabaseHelper(this);
+
+
         SharedPreferences sharedPreference = this.getSharedPreferences("user", Context.MODE_PRIVATE);
         if(sharedPreference.getInt("Age", -1) == -1){
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);

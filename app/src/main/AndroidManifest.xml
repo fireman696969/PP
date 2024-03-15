@@ -13,6 +13,11 @@
         android:theme="@style/Theme.PollutionPals"
         tools:targetApi="31">
         <activity
+            android:name=".MyReportsPage"
+            android:exported="false"
+            android:label="@string/title_activity_my_reports_page"
+            android:theme="@style/Theme.PollutionPals" />
+        <activity
             android:name=".UI.NewReportPage.NewReportPage"
             android:exported="false" />
         <activity

@@ -19,11 +19,9 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TABLE_NAME = "Citizens";
     private static final String COLUMN_CitizenNum = "CitizenNum";
-    private static final String COLUMN_Fname = "Fname";
-    private static final String COLUMN_Lname = "Lname";
+    private static final String COLUMN_Fullname = "Fullname";
     private static final String COLUMN_Age = "Age";
-    private static final String COLUMN_Email = "Email";
-    private static final String COLUMN_Address = "Address";
+    private static final String COLUMN_Points = "Points";
     private static final String COLUMN_Id = "Id";
     private static final String COLUMN_Pass = "Pass";
 
@@ -37,11 +35,9 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_NAME +
                         " (" + COLUMN_CitizenNum + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        COLUMN_Fname + " TEXT, " +
-                        COLUMN_Lname + " TEXT, " +
+                        COLUMN_Fullname + " TEXT, " +
                         COLUMN_Age + " INTEGER, " +
-                        COLUMN_Email + " TEXT, " +
-                        COLUMN_Address + " TEXT, " +
+                        COLUMN_Points + " INTEGER, " +
                         COLUMN_Id + " TEXT, " +
                         COLUMN_Pass + " TEXT);";
         db.execSQL(query);
@@ -52,15 +48,14 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void AddCitizen(String Fname, String Lname, int Age, String Address, String Email, String Id, String Pass){
+    public void AddCitizen(String Fullname, int Age, String Id, String Pass){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_Fname, Fname);
-        cv.put(COLUMN_Lname, Lname);
+        cv.put(COLUMN_Fullname, Fullname);
         cv.put(COLUMN_Age, Age);
-        cv.put(COLUMN_Address, Address);
-        cv.put(COLUMN_Email,Email);
+        int i =0;
+        cv.put(COLUMN_Points, i);
         cv.put(COLUMN_Id, Id);
         cv.put(COLUMN_Pass, Pass);
 
@@ -90,22 +85,14 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query, null);
         cursor.moveToFirst();
         return cursor;
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        String[] projection = {COLUMN_Fname, COLUMN_Lname, COLUMN_Age, COLUMN_Address, COLUMN_Email, COLUMN_Id, COLUMN_Pass};
-//        String selection = COLUMN_CitizenNum + "=?";
-//        String[] selectionArgs = {id};
-//        return db.query(TABLE_NAME, projection, selection, selectionArgs, null, null, null);
     }
 
 
-    public void updateData(String row_id, String Fname, String Lname, int Age, String Address, String Email, String Pass, String Id){
+    public void updateData(String row_id, String Fullname, int Age, String Pass, String Id){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_Fname, Fname);
-        cv.put(COLUMN_Lname, Lname);
+        cv.put(COLUMN_Fullname, Fullname);
         cv.put(COLUMN_Age, Age);
-        cv.put(COLUMN_Address, Address);
-        cv.put(COLUMN_Email,Email);
         cv.put(COLUMN_Id, Id);
         cv.put(COLUMN_Pass, Pass);
 
@@ -155,12 +142,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
         return result;
     }
-    public boolean CheckIfAlreadyExists(String IdNumber, String Email){
+    public boolean CheckIfAlreadyExists(String IdNumber){
         boolean result = false;
         try {
             String query = " SELECT EXISTS (\n" +
-                    "  SELECT * FROM " + TABLE_NAME + "  WHERE " + COLUMN_Id + " = '" + IdNumber + "' OR " + COLUMN_Email + " = '" + Email + "' \n" +
-                    ")";
+                    "  SELECT * FROM " + TABLE_NAME + "  WHERE " + COLUMN_Id + " = '" + IdNumber + ")";
             SQLiteDatabase db = this.getReadableDatabase();
             Cursor cursor = db.rawQuery(query, null);
 
