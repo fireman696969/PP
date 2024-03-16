@@ -6,7 +6,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -23,8 +25,11 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
+import com.example.pollutionpals.Data.DB.ReportsDatabase;
 import com.example.pollutionpals.R;
 
+import java.io.ByteArrayOutputStream;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedList;
@@ -38,6 +43,8 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
     int y=0,m=0,d=0;
     Spinner pointsSpinner;
     Button btnSubmit;
+    SharedPreferences sharedpreference;
+    Bitmap photo;
 
 
 
@@ -84,6 +91,7 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
 
         edDescripton = findViewById(R.id.edDiscription);
         edLocation = findViewById(R.id.edLocation);
+        sharedpreference = this.getSharedPreferences("user", Context.MODE_PRIVATE);
 
 
     }
@@ -142,7 +150,11 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(this, "Estimate points", Toast.LENGTH_SHORT).show();
             }
             else{
-
+                ReportsDatabase reports = new ReportsDatabase(this);
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
+                reports.AddReport(sharedpreference.getString("Id", "0"), byteArray,edDescripton.getText().toString(), edLocation.getText().toString(),edDate.getText().toString(), Integer.parseInt(pointsSpinner.getSelectedItem().toString())  );
             }
         }
 
@@ -151,7 +163,7 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
+             photo = (Bitmap) data.getExtras().get("data");
             imgvCamera.setImageBitmap(photo);
             int height = Integer.parseInt(String.valueOf(Math.round(this.getResources().getDisplayMetrics().density * 150)));
             int width = Integer.parseInt(String.valueOf(Math.round(this.getResources().getDisplayMetrics().density * 250)));

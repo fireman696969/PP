@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import java.sql.Blob;
+
 public class ReportsDatabase extends SQLiteOpenHelper {
     private Context context;
     private static final String DATABASE_NAME = "Citizens.db";
@@ -41,7 +43,7 @@ public class ReportsDatabase extends SQLiteOpenHelper {
         String query = "CREATE TABLE " + TABLE_NAME +
                 " (" + COLUMN_ReportNum + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_Id + " TEXT, " +
-                COLUMN_Img + " TEXT, " +
+                COLUMN_Img + " BLOB, " +
                 COLUMN_Description + " TEXT, " +
                 COLUMN_Location + " TEXT, " +
                 COLUMN_Date + " TEXT, " +
@@ -55,7 +57,7 @@ public class ReportsDatabase extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void AddReport(String id, String imgsrc, String Description, String Location, String Date, Integer Points ){
+    public void AddReport(String id, byte[] imgsrc, String Description, String Location, String Date, Integer Points ){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -70,12 +72,16 @@ public class ReportsDatabase extends SQLiteOpenHelper {
 
 
 
+
+
         long result = db.insert(TABLE_NAME,null, cv);
+
         if(result == -1){
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
         }else {
-            Toast.makeText(context, "Added Successfully!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Added report Successfully!", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     public Cursor readAllData(){
