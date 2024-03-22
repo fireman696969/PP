@@ -12,12 +12,13 @@ import android.widget.TextView;
 
 import com.example.pollutionpals.R;
 import com.example.pollutionpals.UI.MyProfilePage.MyProfilePage;
+import com.example.pollutionpals.UI.MyReportsPage.MyReportsPage;
 import com.example.pollutionpals.UI.NewReportPage.NewReportPage;
 
 public class MainPage extends AppCompatActivity implements View.OnClickListener {
     TextView tvUserName;
     MainModule mainModule;
-    Button btnMyProfilePage, btnNewReport;
+    Button btnMyProfilePage, btnNewReport, btnMyReports;
 
 
     @Override
@@ -29,10 +30,13 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener 
         tvUserName.setText(mainModule.GetUserName());
         btnMyProfilePage = findViewById(R.id.btnMyProfilePage);
         btnNewReport = findViewById(R.id.btnNewReport);
+        btnMyReports = findViewById(R.id.btnAllReports);
+
 
 
         btnMyProfilePage.setOnClickListener(this);
         btnNewReport.setOnClickListener(this);
+        btnMyReports.setOnClickListener(this);
 
 
     }
@@ -45,6 +49,10 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener 
         }
         if(btnNewReport == view){
             Intent intent = new Intent(this, NewReportPage.class);
+            startActivity(intent);
+        }
+        if(btnMyReports == view){
+            Intent intent = new Intent(this, MyReportsPage.class);
             startActivity(intent);
         }
 

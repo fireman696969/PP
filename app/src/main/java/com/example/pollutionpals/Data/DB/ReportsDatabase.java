@@ -14,7 +14,7 @@ import java.sql.Blob;
 
 public class ReportsDatabase extends SQLiteOpenHelper {
     private Context context;
-    private static final String DATABASE_NAME = "Citizens.db";
+    private static final String DATABASE_NAME = "Reports.db";
     private static final int DATABASE_VERSION = 1;
 
 
@@ -57,18 +57,26 @@ public class ReportsDatabase extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public Cursor GetReportsById(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + COLUMN_Id + " = '" + id + "'";
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+        return cursor;
+    }
+
     public void AddReport(String id, byte[] imgsrc, String Description, String Location, String Date, Integer Points ){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_Id, id);
-        cv.put(COLUMN_Img, imgsrc);
-        cv.put(COLUMN_Description, Description);
-        cv.put(COLUMN_Location, Location);
-        cv.put(COLUMN_Date, Date);
-        cv.put(COLUMN_Points, Points);
+        cv.put(COLUMN_Id, id); // id: 1
+        cv.put(COLUMN_Img, imgsrc); // img: 2
+        cv.put(COLUMN_Description, Description); // description: 3
+        cv.put(COLUMN_Location, Location); // location: 4
+        cv.put(COLUMN_Date, Date); // date: 5
+        cv.put(COLUMN_Points, Points); // points: 6
         String status = "Pending";
-        cv.put(COLUMN_Status, status);
+        cv.put(COLUMN_Status, status); // status: 7
 
 
 
@@ -94,13 +102,7 @@ public class ReportsDatabase extends SQLiteOpenHelper {
         }
         return cursor;
     }
-    public Cursor GetReportsById(String id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + COLUMN_Id + " = '" + id + "'";
-        Cursor cursor = db.rawQuery(query, null);
-        cursor.moveToFirst();
-        return cursor;
-    }
+
 
 
 //    public void updateData(String row_id, String Fullname, int Age, String Pass, String Id){
@@ -134,5 +136,6 @@ public class ReportsDatabase extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME);
     }
+
 
 }

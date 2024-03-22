@@ -27,6 +27,8 @@ import android.widget.Toast;
 
 import com.example.pollutionpals.Data.DB.ReportsDatabase;
 import com.example.pollutionpals.R;
+import com.example.pollutionpals.UI.MainPage.MainPage;
+import com.example.pollutionpals.UI.MyProfilePage.MyProfilePage;
 
 import java.io.ByteArrayOutputStream;
 import java.sql.Blob;
@@ -154,7 +156,14 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte[] byteArray = stream.toByteArray();
-                reports.AddReport(sharedpreference.getString("Id", "0"), byteArray,edDescripton.getText().toString(), edLocation.getText().toString(),edDate.getText().toString(), Integer.parseInt(pointsSpinner.getSelectedItem().toString())  );
+                reports.AddReport(sharedpreference.getString("Id", "0"),
+                        byteArray,
+                        edDescripton.getText().toString(),
+                        edLocation.getText().toString(),
+                        edDate.getText().toString(),
+                        Integer.parseInt(pointsSpinner.getSelectedItem().toString())  );
+                Intent intent = new Intent(this, MainPage.class);
+                startActivity(intent);
             }
         }
 
