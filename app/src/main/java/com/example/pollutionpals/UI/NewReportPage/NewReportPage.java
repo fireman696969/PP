@@ -44,7 +44,7 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
     EditText edDate, edDescripton, edLocation;
     int y=0,m=0,d=0;
     Spinner pointsSpinner;
-    Button btnSubmit;
+    Button btnSubmit, btnBackNewReport;
     SharedPreferences sharedpreference;
     Bitmap photo;
 
@@ -59,6 +59,9 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
 
         imgvCamera = findViewById(R.id.imgvCamera);
         imgvCamera.setOnClickListener(this);
+
+        btnBackNewReport = findViewById(R.id.btnBackNewReport);
+        btnBackNewReport.setOnClickListener(this);
 
         newReportModule = new NewReportModule(this);
 
@@ -165,6 +168,10 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
                 Intent intent = new Intent(this, MainPage.class);
                 startActivity(intent);
             }
+        }
+        if(btnBackNewReport == view){
+            Intent intent = new Intent(this, MainPage.class);
+            startActivity(intent);
         }
 
     }

@@ -35,18 +35,18 @@
 
                 >
 
-                <ImageButton
-                    android:id="@+id/imageButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+<!--                <ImageButton-->
+<!--                    android:id="@+id/imageButton"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
 
-                    android:src="@drawable/baseline_settings_24"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.068"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.023"></ImageButton>
+<!--                    android:src="@drawable/baseline_settings_24"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintHorizontal_bias="0.068"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintVertical_bias="0.023"></ImageButton>-->
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -63,16 +63,16 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.022" />
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/baseline_local_police_24"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.898"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.023" />
+<!--                <ImageButton-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:src="@drawable/baseline_local_police_24"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintHorizontal_bias="0.898"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintVertical_bias="0.023" />-->
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -99,10 +99,11 @@
                 <TableRow android:layout_margin="20dp">
 
                     <Button
+                        android:id="@+id/btnMyProfilePage"
                         android:layout_marginRight="10dp"
                         android:layout_weight="2"
-                        android:background="@drawable/btn_red"
-                        android:text="Catalog" />
+                        android:background="@drawable/btn_magenta"
+                        android:text="My Profile" />
 
                     <Button
                         android:layout_marginLeft="10dp"
@@ -128,27 +129,10 @@
                         android:layout_marginLeft="10dp"
                         android:layout_weight="2"
                         android:background="@drawable/btn_orange"
-                        android:text="Get Advice" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="20dp">
-
-                    <Button
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="2"
-                        android:background="@drawable/btn_purple"
                         android:text="Q and A" />
-
-                    <Button
-                        android:id="@+id/btnMyProfilePage"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="2"
-                        android:background="@drawable/btn_magenta"
-                        android:text="My Profile" />
                 </TableRow>
+
+
 
             </TableLayout>
         </androidx.cardview.widget.CardView>

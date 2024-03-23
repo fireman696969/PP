@@ -173,17 +173,35 @@
 
 
             </RelativeLayout>
-
-            <Button
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/layoutPoints"
+                android:layout_centerHorizontal="true"
+                >
+                <Button
                 android:id="@+id/btnSubmit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Submit"
-                android:layout_below="@+id/layoutPoints"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
+
+                android:layout_margin="20dp"
                 android:background="@drawable/btn_green"
                 />
+                <Button
+                    android:id="@+id/btnBackNewReport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Back"
+
+                    android:layout_margin="20dp"
+                    android:background="@drawable/btn_red"
+                    />
+
+            </LinearLayout>
+
+
 
 
 
