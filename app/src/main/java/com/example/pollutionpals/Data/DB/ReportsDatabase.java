@@ -92,7 +92,7 @@ public class ReportsDatabase extends SQLiteOpenHelper {
 
     }
 
-    public Cursor readAllData(){
+    public Cursor GetAllReports(){
         String query = "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
 

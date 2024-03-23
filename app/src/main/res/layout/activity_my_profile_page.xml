@@ -51,7 +51,7 @@
 
             <LinearLayout
                 android:id="@+id/layPoints"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_margin="20dp"
@@ -72,6 +72,7 @@
                     android:textStyle="bold"
                     />
                 <TextView
+                    android:id="@+id/tvPointsProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="360"
@@ -85,7 +86,7 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layData"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_margin="20dp"
@@ -104,19 +105,65 @@
                     android:textColor="@color/black"
                     android:textSize="20dp"
                     android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+
                     />
-                <TextView
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="360"
-                    android:textColor="#0D6EBC"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:src="@drawable/baseline_arrow_forward_ios_24"
                     android:layout_marginHorizontal="20dp"
                     />
 
 
+
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layLogOut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="20dp"
+                android:layout_below="@+id/layData"
+                >
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_adjust_24"
+                    android:layout_marginHorizontal="20dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Log Out "
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_arrow_forward_ios_24"
+                    android:layout_marginHorizontal="20dp"
+                    />
+
+
+
+
+            </LinearLayout>
+            <Button
+                android:id="@+id/btnBackProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Back"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="20dp"
+                android:background="@drawable/btn_red"
+                android:layout_below="@+id/layLogOut"
+                />
 
 
 

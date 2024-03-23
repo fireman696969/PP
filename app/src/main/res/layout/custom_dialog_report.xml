@@ -77,7 +77,7 @@
         android:layout_below="@+id/tvStatusDialog"
         android:layout_centerHorizontal="true"
         android:text="Back"
-        android:background="#AA00FF"
+        android:background="@drawable/btn_red"
         android:layout_margin="10dp"
         />
 

@@ -30,6 +30,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.pollutionpals.Data.DB.ReportsDatabase;
 import com.example.pollutionpals.R;
+import com.example.pollutionpals.UI.MainPage.MainModule;
 import com.example.pollutionpals.UI.MainPage.MainPage;
 import com.example.pollutionpals.UI.NewReportPage.NewReportPage;
 
@@ -44,17 +45,30 @@ public class MyReportsPage extends AppCompatActivity implements View.OnClickList
     int [] idReportArr;
     TableRow [] rowArr;
     Cursor cursor;
+    MainModule mainModule;
+    String idSharedPrefrence;
+    TextView tvLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_my_reports_page);
+
+        tvLocation = findViewById(R.id.tvLocation);
         tblReports = findViewById(R.id.tblReports);
         ReportsDatabase reports = new ReportsDatabase(this);
         sharedPreference = this.getSharedPreferences("user", Context.MODE_PRIVATE);
-        String id = sharedPreference.getString("Id", "id");
-         cursor = reports.GetReportsById(id);
+         idSharedPrefrence = sharedPreference.getString("Id", "id");
+        if(idSharedPrefrence.equals("329455109")){
+            cursor = reports.GetAllReports();
+            tvLocation.setText(" Id");
+        }
+        else{
+            cursor = reports.GetReportsById(idSharedPrefrence);
+        }
+
+
+
 
         btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(this);
@@ -107,11 +121,18 @@ public class MyReportsPage extends AppCompatActivity implements View.OnClickList
                 String date = cursor.getString(5);
                 String location = cursor.getString(4);
                 String status = cursor.getString(7);
+                String id = cursor.getString(1);
 
                 // Set text to TextViews
                 numTextView.setText((i + 1) + "");
                 dateTextView.setText(date);
-                descriptionTextView.setText(location);
+                if(idSharedPrefrence.equals("329455109")){
+                    descriptionTextView.setText(id);
+                }
+                else{
+                    descriptionTextView.setText(location);
+                }
+
                 statusTextView.setText(status);
 
                 // Add TextViews to the row
@@ -154,9 +175,9 @@ public class MyReportsPage extends AppCompatActivity implements View.OnClickList
             if(rowArr[i] == view){
                 Dialog dialog = new Dialog(this);
                 dialog.setCancelable(false);
-                dialog.setContentView(R.layout.custom_dialog_report);
-                cursor.moveToPosition(i);
 
+                cursor.moveToPosition(i);
+                String idPerson = cursor.getString(1);
                 String date = cursor.getString(5);
                 String description = cursor.getString(3);
                 String status = cursor.getString(7);
@@ -165,12 +186,45 @@ public class MyReportsPage extends AppCompatActivity implements View.OnClickList
                 byte[] byteArray = cursor.getBlob(2);
                 Bitmap img = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
 
-                ImageView imgvDialog = dialog.findViewById(R.id.imgvCameraDialog);
-                TextView tvDescription = dialog.findViewById(R.id.tvDescriptionDialog);
-                TextView tvDate = dialog.findViewById(R.id.tvDateDialog);
-                TextView tvLocation = dialog.findViewById(R.id.tvLocationDialog);
-                TextView tvPoints = dialog.findViewById(R.id.tvPointsDialog);
-                TextView tvStatus = dialog.findViewById(R.id.tvStatusDialog);
+                ImageView imgvDialog;
+                TextView tvDescription;
+                TextView tvDate;
+                TextView tvLocation;
+                TextView tvPoints;
+                TextView tvStatus;
+                TextView tvId;
+
+
+                if(idSharedPrefrence.equals("329455109")){
+                    dialog.setContentView(R.layout.custom_dialog_admin);
+                     imgvDialog = dialog.findViewById(R.id.imgvCameraDialogAdmin);
+                     tvDescription = dialog.findViewById(R.id.tvDescriptionDialogAdmin);
+                     tvDate = dialog.findViewById(R.id.tvDateDialogAdmin);
+                     tvLocation = dialog.findViewById(R.id.tvLocationDialogAdmin);
+                     tvPoints = dialog.findViewById(R.id.tvPointsDialogAdmin);
+                     tvStatus = dialog.findViewById(R.id.tvStatusDialogAdmin);
+                     tvId = dialog.findViewById(R.id.tvIdDialogAdmin);
+                     tvId.setText("Id: " +idPerson);
+                     Button btnApprove = dialog.findViewById(R.id.btnApprove);
+                     Button btnDeny = dialog.findViewById(R.id.btnDeny);
+
+
+                }
+                else{
+                    dialog.setContentView(R.layout.custom_dialog_report);
+
+                     imgvDialog = dialog.findViewById(R.id.imgvCameraDialog);
+                     tvDescription = dialog.findViewById(R.id.tvDescriptionDialog);
+                     tvDate = dialog.findViewById(R.id.tvDateDialog);
+                     tvLocation = dialog.findViewById(R.id.tvLocationDialog);
+                     tvPoints = dialog.findViewById(R.id.tvPointsDialog);
+                     tvStatus = dialog.findViewById(R.id.tvStatusDialog);
+
+                }
+
+
+
+
 
                 // put parameters of report into boxes
                 imgvDialog.setImageBitmap(img);
@@ -180,13 +234,29 @@ public class MyReportsPage extends AppCompatActivity implements View.OnClickList
                 tvPoints.setText("points: "+points + "");
                 tvStatus.setText("status: " +status);
 
-                Button btnBackDialog = dialog.findViewById(R.id.btnBackDialog);
-                btnBackDialog.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.cancel();
-                    }
-                });
+
+                if(idSharedPrefrence.equals("329455109")){
+                    Button btnBackDialog = dialog.findViewById(R.id.btnBackDialogAdmin);
+
+                    btnBackDialog.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.cancel();
+                        }
+                    });
+                }
+                else{
+                    Button btnBackDialog = dialog.findViewById(R.id.btnBackDialog);
+
+                    btnBackDialog.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.cancel();
+                        }
+                    });
+                }
+
+
 
                 dialog.show();
 

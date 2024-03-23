@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:text="Report"
+        android:id="@+id/tvReportAdmin"
+        android:textSize="20dp"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tvReportAdmin"
+        android:id="@+id/imgvCameraDialogAdmin"
+        android:layout_margin="10dp"
+        />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvDescriptionDialogAdmin"
+        android:layout_below="@+id/imgvCameraDialogAdmin"
+        android:lines="8"
+        android:text="description"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        />
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvDateDialogAdmin"
+        android:layout_below="@+id/imgvCameraDialogAdmin"
+        android:lines="8"
+        android:text="Date"
+        android:layout_margin="10dp"
+        android:layout_toRightOf="@+id/tvDescriptionDialogAdmin"
+        android:gravity="center"
+        />
+    <TextView
+        android:id="@+id/tvLocationDialogAdmin"
+        android:layout_below="@+id/tvDescriptionDialogAdmin"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:lines="6"
+        android:layout_margin="10dp"
+        android:text="Location"
+        android:gravity="center"
+        />
+    <TextView
+        android:id="@+id/tvPointsDialogAdmin"
+        android:layout_below="@+id/tvDateDialogAdmin"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:lines="6"
+        android:layout_margin="10dp"
+        android:layout_toRightOf="@+id/tvLocationDialogAdmin"
+        android:text="points"
+        android:gravity="center"
+        />
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_below="@+id/tvPointsDialogAdmin"
+            android:id="@+id/tvStatusDialogAdmin"
+            android:text="Status"
+            android:layout_margin="10dp"
+            />
+
+                 <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="329455109"
+                android:textSize="10dp"
+                     android:layout_below="@+id/tvStatusDialogAdmin"
+                android:id="@+id/tvIdDialogAdmin"
+                     android:layout_centerHorizontal="true"
+                     android:layout_margin="10dp"
+                />
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/layApproveDeny"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/tvIdDialogAdmin"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnApprove"
+            android:text="Approve"
+            android:background="#00C853"
+            android:layout_marginHorizontal="10dp"
+
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnDeny"
+            android:text="Deny"
+            android:background="#CD2C2C"
+            android:layout_marginHorizontal="10dp"
+            />
+
+    </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnBackDialogAdmin"
+        android:layout_below="@+id/layApproveDeny"
+        android:layout_centerHorizontal="true"
+        android:text="Back"
+        android:background="@drawable/btn_red"
+        android:layout_margin="10dp"
+        />
+
+</RelativeLayout>

@@ -22,6 +22,12 @@ public class MainModule {
 
         return Username;
     }
+    public int GetUserPoints(){
+        return sharedPreference.getInt("Points", -1);
+    }
+    public String GetUserId(){
+        return sharedPreference.getString("Id", "1");
+    }
 
 
 }

@@ -44,6 +44,7 @@ public class LoginModule {
         editor.putInt("Points",Points);
         editor.putString("Id", Id);
         editor.putString("Pass", Pass);
+
         editor.apply();
 
     }
