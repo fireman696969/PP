@@ -5,81 +5,208 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UI.MyProfilePage.MyProfilePage"
+    android:background="#0D6EBC"
     >
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-    <!-- Title -->
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My Profile"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:id="@+id/tvMyProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                android:textSize="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="20dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
 
-    <!-- Points Circle -->
-    <RelativeLayout
-        android:id="@+id/pointsCircle"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@id/tvTitle"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/circle_background">
+                />
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Elon Levy"
+                android:textSize="30dp"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="20dp"
+                android:textColor="#0D6EBC"
+                android:textStyle="bold"
+                android:layout_below="@+id/tvMyProfile"
+                />
 
-        <!-- Points Text -->
-        <TextView
-            android:id="@+id/tvPoints"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="100"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_centerInParent="true"/>
-    </RelativeLayout>
+            <LinearLayout
+                android:id="@+id/layPoints"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="20dp"
+                android:layout_below="@+id/tvName"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_local_police_24"
+                    android:layout_marginHorizontal="20dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="points: "
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="360"
+                    android:textColor="#0D6EBC"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_marginHorizontal="20dp"
+                    />
 
-    <!-- Recent Report Line -->
-    <TextView
-        android:id="@+id/tvRecentReport"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Recent Report: Sample Report"
-        android:layout_below="@id/pointsCircle"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:textSize="20dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="20dp"
+                android:layout_below="@+id/layPoints"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_person_outline_24"
+                    android:layout_marginHorizontal="20dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Update Info "
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="360"
+                    android:textColor="#0D6EBC"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_marginHorizontal="20dp"
+                    />
 
 
-    <!-- All Reports Button -->
-    <Button
-        android:id="@+id/btnAllReports"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="All Reports"
-        android:layout_below="@id/tvRecentReport"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"/>
+            </LinearLayout>
 
-    <!-- Update Button -->
-    <Button
-        android:id="@+id/btnUpdate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Update"
-        android:layout_below="@id/btnAllReports"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"/>
 
-    <!-- LogOut Button -->
-    <Button
-        android:id="@+id/btnLogOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Log Out"
-        android:layout_below="@id/btnUpdate"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"/>
+
+
+
+        </RelativeLayout>
+
+
+
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
+<!--            &lt;!&ndash; Title &ndash;&gt;-->
+<!--            <TextView-->
+<!--                android:id="@+id/tvTitle"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="My Profile"-->
+<!--                android:textSize="24sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_marginTop="24dp"-->
+<!--                android:textColor="@color/black"/>-->
+
+<!--            &lt;!&ndash; Points Circle &ndash;&gt;-->
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/pointsCircle"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="100dp"-->
+<!--                android:layout_below="@id/tvTitle"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_marginTop="24dp"-->
+<!--                android:background="@drawable/circle_background">-->
+
+<!--                &lt;!&ndash; Points Text &ndash;&gt;-->
+<!--                <TextView-->
+<!--                    android:id="@+id/tvPoints"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="100"-->
+<!--                    android:textSize="24sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_centerInParent="true"/>-->
+<!--            </RelativeLayout>-->
+
+<!--            &lt;!&ndash; Recent Report Line &ndash;&gt;-->
+<!--            <TextView-->
+<!--                android:id="@+id/tvRecentReport"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Recent Report: Sample Report"-->
+<!--                android:layout_below="@id/pointsCircle"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_marginTop="24dp"-->
+<!--                android:textSize="20dp"/>-->
+
+
+<!--            &lt;!&ndash; All Reports Button &ndash;&gt;-->
+<!--            <Button-->
+<!--                android:id="@+id/btnAllReports"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="All Reports"-->
+<!--                android:layout_below="@id/tvRecentReport"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_marginTop="24dp"/>-->
+
+<!--            &lt;!&ndash; Update Button &ndash;&gt;-->
+<!--            <Button-->
+<!--                android:id="@+id/btnUpdate"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Update"-->
+<!--                android:layout_below="@id/btnAllReports"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_marginTop="24dp"/>-->
+
+<!--            &lt;!&ndash; LogOut Button &ndash;&gt;-->
+<!--            <Button-->
+<!--                android:id="@+id/btnLogOut"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Log Out"-->
+<!--                android:layout_below="@id/btnUpdate"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_marginTop="24dp"/>-->
+<!--        </RelativeLayout>-->
+
+
 
 
 
@@ -103,6 +230,7 @@
 
 
 <!--    </LinearLayout>-->
+    </androidx.cardview.widget.CardView>
 
 
 </RelativeLayout>

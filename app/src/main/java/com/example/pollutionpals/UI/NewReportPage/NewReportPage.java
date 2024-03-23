@@ -2,9 +2,14 @@ package com.example.pollutionpals.UI.NewReportPage;
 
 import static android.text.InputType.TYPE_NULL;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -105,7 +110,7 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         if (imgvCamera == view) {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(intent, REQUEST_CODE);
+            someActivityResultLauncher.launch(intent);
         }
         if(edDate == view){
             Calendar c = Calendar.getInstance();
@@ -176,24 +181,45 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
-             photo = (Bitmap) data.getExtras().get("data");
-            imgvCamera.setImageBitmap(photo);
-            int height = Integer.parseInt(String.valueOf(Math.round(this.getResources().getDisplayMetrics().density * 150)));
-            int width = Integer.parseInt(String.valueOf(Math.round(this.getResources().getDisplayMetrics().density * 250)));
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width,height);
-            params.addRule(RelativeLayout.BELOW, R.id.tv1);
-            params.addRule(RelativeLayout.CENTER_HORIZONTAL);
-            imgvCamera.setLayoutParams(params);
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+//             photo = (Bitmap) data.getExtras().get("data");
+//            imgvCamera.setImageBitmap(photo);
+//            int height = Integer.parseInt(String.valueOf(Math.round(this.getResources().getDisplayMetrics().density * 150)));
+//            int width = Integer.parseInt(String.valueOf(Math.round(this.getResources().getDisplayMetrics().density * 250)));
+//            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width,height);
+//            params.addRule(RelativeLayout.BELOW, R.id.tv1);
+//            params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+//            imgvCamera.setLayoutParams(params);
+//
+//
+//
+//        } else {
+//            Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT).show();
+//            super.onActivityResult(requestCode, resultCode, data);
+//
+//        }
+//    }
+    ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        // There are no request codes
+                        Intent data = result.getData();
+                        photo = (Bitmap) data.getExtras().get("data");
+                        imgvCamera.setImageBitmap(photo);
+                        int height = Integer.parseInt(String.valueOf(Math.round(getBaseContext().getResources().getDisplayMetrics().density * 150)));
+                        int width = Integer.parseInt(String.valueOf(Math.round(getBaseContext().getResources().getDisplayMetrics().density * 250)));
+                        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width,height);
+                        params.addRule(RelativeLayout.BELOW, R.id.tv1);
+                        params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                        imgvCamera.setLayoutParams(params);
 
+                    }
+                }
+            });
 
-
-        } else {
-            Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT).show();
-            super.onActivityResult(requestCode, resultCode, data);
-
-        }
-    }
 }

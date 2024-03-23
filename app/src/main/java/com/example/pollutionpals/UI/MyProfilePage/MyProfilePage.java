@@ -20,19 +20,19 @@ public class MyProfilePage extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_page);
-        btnLogOut = findViewById(R.id.btnLogOut);
-        btnLogOut.setOnClickListener(this);
+//        btnLogOut = findViewById(R.id.btnLogOut);
+//        btnLogOut.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if(btnLogOut == view){
-            myProfileModule = new MyProfileModule(this);
-            TextView tvUserName = findViewById(R.id.tvUserName);
-            myProfileModule.LogOut();
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-        }
+//        if(btnLogOut == view){
+//            myProfileModule = new MyProfileModule(this);
+//            TextView tvUserName = findViewById(R.id.tvUserName);
+//            myProfileModule.LogOut();
+//            Intent intent = new Intent(this, LoginActivity.class);
+//            startActivity(intent);
+//        }
 
     }
 }
