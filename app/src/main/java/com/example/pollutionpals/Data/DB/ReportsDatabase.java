@@ -103,6 +103,22 @@ public class ReportsDatabase extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public void updateReportStatus(String reportId, String newStatus) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_Status, newStatus);
+
+        long result = db.update(TABLE_NAME, cv, COLUMN_ReportNum + "=?", new String[]{reportId});
+
+        if (result == -1) {
+            Toast.makeText(context, "Failed to update report status", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Report status updated successfully!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
 
 
 //    public void updateData(String row_id, String Fullname, int Age, String Pass, String Id){

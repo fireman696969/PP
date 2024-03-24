@@ -83,6 +83,7 @@
             android:layout_below="@+id/tblReports"
             android:layout_centerHorizontal="true"
             android:layout_margin="20dp"
+            android:background="@drawable/btn_red"
             />
     </RelativeLayout>
     </androidx.cardview.widget.CardView>

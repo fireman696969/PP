@@ -35,11 +35,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_NAME +
                         " (" + COLUMN_CitizenNum + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        COLUMN_Fullname + " TEXT, " +
-                        COLUMN_Age + " INTEGER, " +
-                        COLUMN_Points + " INTEGER, " +
-                        COLUMN_Id + " TEXT, " +
-                        COLUMN_Pass + " TEXT);";
+                        COLUMN_Fullname + " TEXT, " + // fullname: 1
+                        COLUMN_Age + " INTEGER, " + // age: 2
+                        COLUMN_Points + " INTEGER, " + // points: 3
+                        COLUMN_Id + " TEXT, " + // id: 4
+                        COLUMN_Pass + " TEXT);"; // pass: 5
         db.execSQL(query);
     }
     @Override
@@ -67,6 +67,34 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }else {
             Toast.makeText(context, "Added Successfully!", Toast.LENGTH_SHORT).show();
         }
+    }
+    public void UpdatePointsById(String id, int pointsToAdd) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_Points, getPointsById(id) + pointsToAdd); // Get current points and add new points
+
+        long result = db.update(TABLE_NAME, cv, COLUMN_Id + "=?", new String[]{id});
+
+        if (result == -1) {
+            Toast.makeText(context, "Failed to update points", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Points updated successfully!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // Helper method to get current points before update
+    private int getPointsById(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + COLUMN_Points + " FROM " + TABLE_NAME + " WHERE " + COLUMN_Id + " = '" + id + "'";
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                return cursor.getInt(0);
+            }
+        }
+        // If no record found, return 0 as default points
+        return 0;
     }
 
     public Cursor readAllData(){

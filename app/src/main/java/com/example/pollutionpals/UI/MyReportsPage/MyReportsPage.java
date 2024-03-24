@@ -28,6 +28,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.pollutionpals.Data.DB.MyDatabaseHelper;
 import com.example.pollutionpals.Data.DB.ReportsDatabase;
 import com.example.pollutionpals.R;
 import com.example.pollutionpals.UI.MainPage.MainModule;
@@ -48,6 +49,7 @@ public class MyReportsPage extends AppCompatActivity implements View.OnClickList
     MainModule mainModule;
     String idSharedPrefrence;
     TextView tvLocation;
+    int bigi=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,6 +175,7 @@ public class MyReportsPage extends AppCompatActivity implements View.OnClickList
         }
         for (int i = 0; i < cursor.getCount(); i++) {
             if(rowArr[i] == view){
+                bigi = i;
                 Dialog dialog = new Dialog(this);
                 dialog.setCancelable(false);
 
@@ -207,6 +210,49 @@ public class MyReportsPage extends AppCompatActivity implements View.OnClickList
                      tvId.setText("Id: " +idPerson);
                      Button btnApprove = dialog.findViewById(R.id.btnApprove);
                      Button btnDeny = dialog.findViewById(R.id.btnDeny);
+
+                     btnApprove.setOnClickListener(new View.OnClickListener() {
+                         @Override
+                         public void onClick(View v) {
+                             ReportsDatabase reports = new ReportsDatabase(getBaseContext());
+                             MyDatabaseHelper citizens = new MyDatabaseHelper(getBaseContext());
+
+                            // add points to citizens in database
+                             int points = cursor.getInt(6);
+                             String id = cursor.getString(1);
+                             citizens.UpdatePointsById(id,points);
+
+                             // change status to approved in database
+                            reports.updateReportStatus(String.valueOf(idReportArr[bigi]),"approved");
+
+
+                             if(cursor.getString(1).equals("329455109")){
+                                 // update Shared prefrence
+                                 SharedPreferences sharedPreference = getBaseContext().getSharedPreferences("user", Context.MODE_PRIVATE);
+                                 SharedPreferences.Editor editor = sharedPreference.edit();
+                                 Cursor cursorCitizen = citizens.getUserById(cursor.getString(1));
+                                 if(cursorCitizen.moveToFirst()){
+                                     editor.putString("UserName", cursorCitizen.getString(1) );
+                                     editor.putInt("Age",cursorCitizen.getInt(2));
+                                     editor.putInt("Points",cursorCitizen.getInt(3));
+                                     editor.putString("Id", cursorCitizen.getString(4));
+                                     editor.putString("Pass", cursorCitizen.getString(5));
+                                     editor.apply();
+                                 }
+                             }
+
+
+
+
+
+
+
+
+
+
+
+                         }
+                     });
 
 
                 }

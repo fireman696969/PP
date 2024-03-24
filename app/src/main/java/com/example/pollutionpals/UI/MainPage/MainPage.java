@@ -31,6 +31,9 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener 
         btnMyProfilePage = findViewById(R.id.btnMyProfilePage);
         btnNewReport = findViewById(R.id.btnNewReport);
         btnMyReports = findViewById(R.id.btnAllReports);
+        if(mainModule.GetUserId().equals("329455109")){
+            btnMyReports.setText("ALL REPORTS");
+        }
 
 
 
