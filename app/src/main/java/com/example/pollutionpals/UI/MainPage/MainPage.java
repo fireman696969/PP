@@ -10,7 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.pollutionpals.MainActivity;
 import com.example.pollutionpals.R;
+import com.example.pollutionpals.UI.LoginActivity.LoginActivity;
 import com.example.pollutionpals.UI.MyProfilePage.MyProfilePage;
 import com.example.pollutionpals.UI.MyReportsPage.MyReportsPage;
 import com.example.pollutionpals.UI.NewReportPage.NewReportPage;
@@ -25,6 +27,12 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
+
+        SharedPreferences sharedPreference = this.getSharedPreferences("user", Context.MODE_PRIVATE);
+        if(sharedPreference.getInt("Age", -1) == -1){
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
         tvUserName = findViewById(R.id.tvUserName);
         mainModule = new MainModule(this);
         tvUserName.setText(mainModule.GetUserName());

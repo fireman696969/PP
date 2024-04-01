@@ -2,11 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.MyProfilePage.MyProfilePage"
-    android:background="#0D6EBC"
-    >
+    tools:context=".UpdateInfoPage"
+    android:background="#0D6EBC">
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
@@ -25,10 +25,10 @@
             android:layout_height="match_parent"
             >
             <TextView
-                android:id="@+id/tvMyProfile"
+                android:id="@+id/tvUpdateInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Profile"
+                android:text="Update info"
                 android:textSize="20dp"
                 android:layout_centerHorizontal="true"
                 android:layout_margin="20dp"
@@ -46,7 +46,7 @@
                 android:layout_margin="20dp"
                 android:textColor="#0D6EBC"
                 android:textStyle="bold"
-                android:layout_below="@+id/tvMyProfile"
+                android:layout_below="@+id/tvUpdateInfo"
                 />
 
             <LinearLayout
@@ -172,6 +172,5 @@
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
-
 
 </RelativeLayout>

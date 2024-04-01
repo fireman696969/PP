@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -42,6 +43,8 @@ public class MyReportsPage extends AppCompatActivity implements View.OnClickList
     SharedPreferences sharedPreference;
 
     Button btnBack;
+    MyDatabaseHelper citizens;
+    ReportsDatabase reports;
 
     int [] idReportArr;
     TableRow [] rowArr;
@@ -58,7 +61,8 @@ public class MyReportsPage extends AppCompatActivity implements View.OnClickList
 
         tvLocation = findViewById(R.id.tvLocation);
         tblReports = findViewById(R.id.tblReports);
-        ReportsDatabase reports = new ReportsDatabase(this);
+         reports = new ReportsDatabase(this);
+        citizens = new MyDatabaseHelper(getBaseContext());
         sharedPreference = this.getSharedPreferences("user", Context.MODE_PRIVATE);
          idSharedPrefrence = sharedPreference.getString("Id", "id");
         if(idSharedPrefrence.equals("329455109")){
@@ -68,6 +72,9 @@ public class MyReportsPage extends AppCompatActivity implements View.OnClickList
         else{
             cursor = reports.GetReportsById(idSharedPrefrence);
         }
+
+
+
 
 
 
@@ -179,6 +186,8 @@ public class MyReportsPage extends AppCompatActivity implements View.OnClickList
                 Dialog dialog = new Dialog(this);
                 dialog.setCancelable(false);
 
+
+
                 cursor.moveToPosition(i);
                 String idPerson = cursor.getString(1);
                 String date = cursor.getString(5);
@@ -208,51 +217,71 @@ public class MyReportsPage extends AppCompatActivity implements View.OnClickList
                      tvStatus = dialog.findViewById(R.id.tvStatusDialogAdmin);
                      tvId = dialog.findViewById(R.id.tvIdDialogAdmin);
                      tvId.setText("Id: " +idPerson);
-                     Button btnApprove = dialog.findViewById(R.id.btnApprove);
-                     Button btnDeny = dialog.findViewById(R.id.btnDeny);
 
-                     btnApprove.setOnClickListener(new View.OnClickListener() {
-                         @Override
-                         public void onClick(View v) {
-                             ReportsDatabase reports = new ReportsDatabase(getBaseContext());
-                             MyDatabaseHelper citizens = new MyDatabaseHelper(getBaseContext());
+                     // check if report has already been approved/ denied
+                    if(cursor.getString(7).equals("denied") || cursor.getString(7).equals("approved")){
+                        LinearLayout layApproveDeny = dialog.findViewById(R.id.layApproveDeny);
+                        RelativeLayout layDialogAdmin = dialog.findViewById(R.id.layDialogAdmin);
+                        layDialogAdmin.removeView(layApproveDeny);
+                        TextView tvIdAdmin = dialog.findViewById(R.id.tvIdDialogAdmin);
+                        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                RelativeLayout.LayoutParams.WRAP_CONTENT);
 
-                            // add points to citizens in database
-                             int points = cursor.getInt(6);
-                             String id = cursor.getString(1);
-                             citizens.UpdatePointsById(id,points);
+                              // Position btn back below tvIdAdmin
+                            params.addRule(RelativeLayout.BELOW, tvIdAdmin.getId());
+                            params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+                        Button btnBackDialogAdmin = dialog.findViewById(R.id.btnBackDialogAdmin);
 
-                             // change status to approved in database
-                            reports.updateReportStatus(String.valueOf(idReportArr[bigi]),"approved");
+                        btnBackDialogAdmin.setLayoutParams(params);
+                    }
+                    else{
+                        Button btnApprove = dialog.findViewById(R.id.btnApprove);
+                        Button btnDeny = dialog.findViewById(R.id.btnDeny);
 
-
-                             if(cursor.getString(1).equals("329455109")){
-                                 // update Shared prefrence
-                                 SharedPreferences sharedPreference = getBaseContext().getSharedPreferences("user", Context.MODE_PRIVATE);
-                                 SharedPreferences.Editor editor = sharedPreference.edit();
-                                 Cursor cursorCitizen = citizens.getUserById(cursor.getString(1));
-                                 if(cursorCitizen.moveToFirst()){
-                                     editor.putString("UserName", cursorCitizen.getString(1) );
-                                     editor.putInt("Age",cursorCitizen.getInt(2));
-                                     editor.putInt("Points",cursorCitizen.getInt(3));
-                                     editor.putString("Id", cursorCitizen.getString(4));
-                                     editor.putString("Pass", cursorCitizen.getString(5));
-                                     editor.apply();
-                                 }
-                             }
+                        btnApprove.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
 
 
+                                // add points to citizens in database
+                                int points = cursor.getInt(6);
+                                String id = cursor.getString(1);
+                                citizens.UpdatePointsById(id,points);
+
+                                // change status to approved in database
+                                reports.updateReportStatus(String.valueOf(idReportArr[bigi]),"approved");
 
 
+                                if(cursor.getString(1).equals("329455109")){
+                                    // update Shared prefrence
+                                    SharedPreferences sharedPreference = getBaseContext().getSharedPreferences("user", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPreference.edit();
+                                    Cursor cursorCitizen = citizens.getUserById(cursor.getString(1));
+                                    if(cursorCitizen.moveToFirst()){
+                                        editor.putString("UserName", cursorCitizen.getString(1) );
+                                        editor.putInt("Age",cursorCitizen.getInt(2));
+                                        editor.putInt("Points",cursorCitizen.getInt(3));
+                                        editor.putString("Id", cursorCitizen.getString(4));
+                                        editor.putString("Pass", cursorCitizen.getString(5));
+                                        editor.apply();
+                                    }
+                                }
+                                dialog.cancel();
+                                finish();
+                                startActivity(getIntent());
+                            }
+                        });
+                        btnDeny.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // change status to approved in database
+                                reports.updateReportStatus(String.valueOf(idReportArr[bigi]),"denied");
+                                dialog.cancel();
+                            }
+                        });
+                    }
 
-
-
-
-
-
-
-                         }
-                     });
 
 
                 }
@@ -293,13 +322,13 @@ public class MyReportsPage extends AppCompatActivity implements View.OnClickList
                 }
                 else{
                     Button btnBackDialog = dialog.findViewById(R.id.btnBackDialog);
-
                     btnBackDialog.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             dialog.cancel();
                         }
                     });
+
                 }
 
 

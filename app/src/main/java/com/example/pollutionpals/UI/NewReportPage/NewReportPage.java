@@ -2,23 +2,17 @@ package com.example.pollutionpals.UI.NewReportPage;
 
 import static android.text.InputType.TYPE_NULL;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -27,17 +21,23 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.example.pollutionpals.Data.DB.ReportsDatabase;
+
 import com.example.pollutionpals.R;
 import com.example.pollutionpals.UI.MainPage.MainPage;
-import com.example.pollutionpals.UI.MyProfilePage.MyProfilePage;
 
 import java.io.ByteArrayOutputStream;
-import java.sql.Blob;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
@@ -52,6 +52,7 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
     Button btnSubmit, btnBackNewReport;
     SharedPreferences sharedpreference;
     Bitmap photo;
+    ImageView imgvGetLocation;
 
 
 
@@ -67,6 +68,26 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
 
         btnBackNewReport = findViewById(R.id.btnBackNewReport);
         btnBackNewReport.setOnClickListener(this);
+
+        imgvGetLocation = findViewById(R.id.imgvGetLocation);
+        imgvGetLocation.setOnClickListener(this);
+
+        imgvGetLocation.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                TextView tvLocationInfo = findViewById(R.id.tvLocationInfo);
+                tvLocationInfo.setVisibility(View.VISIBLE);
+                // Start a timer to hide the text view after a delay (e.g., 2 seconds)
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        tvLocationInfo.setVisibility(View.GONE);
+                    }
+                }, 2000);
+                return true;
+            }
+        });
+
 
         newReportModule = new NewReportModule(this);
 
@@ -108,6 +129,7 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
+
         if (imgvCamera == view) {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             someActivityResultLauncher.launch(intent);

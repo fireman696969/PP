@@ -126,6 +126,31 @@
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     />
+                <TextView
+                    android:id="@+id/tvLocationInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/imgvGetLocation"
+                    android:text="Get Location"
+                    android:visibility="gone"
+                    android:layout_marginHorizontal="5dp"
+                    android:textSize="10dp"
+                    />
+
+
+                    <ImageView
+                        android:id="@+id/imgvGetLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_toRightOf="@+id/tvLocation"
+                        android:src="@drawable/baseline_add_location_alt_24"
+                        />
+
+
+
+
+
                 <EditText
                     android:id="@+id/edLocation"
                     android:layout_width="match_parent"
