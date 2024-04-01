@@ -81,6 +81,23 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "Points updated successfully!", Toast.LENGTH_SHORT).show();
         }
     }
+    public void UpdateInfoById(String id, String fullname, int age, String pass) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_Fullname, fullname);
+        cv.put(COLUMN_Age, age);
+        cv.put(COLUMN_Pass, pass);
+
+        long result = db.update(TABLE_NAME, cv, COLUMN_Id + "=?", new String[]{id});
+
+        if (result == -1) {
+            Toast.makeText(context, "Failed to update info", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Info updated successfully!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     // Helper method to get current points before update
     private int getPointsById(String id) {

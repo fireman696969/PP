@@ -14,6 +14,7 @@ import com.example.pollutionpals.R;
 import com.example.pollutionpals.UI.LoginActivity.LoginActivity;
 import com.example.pollutionpals.UI.MainPage.MainModule;
 import com.example.pollutionpals.UI.MainPage.MainPage;
+import com.example.pollutionpals.UI.UpdateInfoPage.UpdateInfoPage;
 
 public class MyProfilePage extends AppCompatActivity implements View.OnClickListener {
     Button btnBackProfile;
@@ -54,6 +55,10 @@ public class MyProfilePage extends AppCompatActivity implements View.OnClickList
             myProfileModule = new MyProfileModule(this);
             myProfileModule.LogOut();
             Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
+        if(layData == view){
+            Intent intent = new Intent(this, UpdateInfoPage.class);
             startActivity(intent);
         }
         if(btnBackProfile == view){

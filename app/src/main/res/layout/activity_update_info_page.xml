@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UpdateInfoPage"
+    tools:context=".UI.UpdateInfoPage.UpdateInfoPage"
     android:background="#0D6EBC">
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -37,10 +37,10 @@
 
                 />
             <TextView
-                android:id="@+id/tvName"
+                android:id="@+id/tvId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Elon Levy"
+                android:text="123456789"
                 android:textSize="30dp"
                 android:layout_centerHorizontal="true"
                 android:layout_margin="20dp"
@@ -50,58 +50,56 @@
                 />
 
             <LinearLayout
-                android:id="@+id/layPoints"
+                android:id="@+id/layFullName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_margin="20dp"
-                android:layout_below="@+id/tvName"
+                android:layout_below="@+id/tvId"
                 >
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/baseline_local_police_24"
+                    android:src="@drawable/baseline_account_box_24"
                     android:layout_marginHorizontal="20dp"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="points: "
+                    android:text="Full name: "
                     android:textColor="@color/black"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     />
-                <TextView
-                    android:id="@+id/tvPointsProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="360"
-                    android:textColor="#0D6EBC"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:layout_marginHorizontal="20dp"
-                    />
+               <EditText
+                   android:id="@+id/edFullNameUpdateInfo"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Elon Levy"
+                   android:textColor="#0D6EBC"
+                   android:inputType="text"
+                   />
 
 
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/layData"
+                android:id="@+id/layAge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_margin="20dp"
-                android:layout_below="@+id/layPoints"
+                android:layout_below="@+id/layFullName"
                 >
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/baseline_person_outline_24"
+                    android:src="@drawable/baseline_elderly_24"
                     android:layout_marginHorizontal="20dp"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Update Info "
+                    android:text="Age: "
                     android:textColor="@color/black"
                     android:textSize="20dp"
                     android:textStyle="bold"
@@ -109,61 +107,85 @@
                     android:gravity="center"
 
                     />
-                <ImageView
+                <EditText
+                    android:id="@+id/edAgeUpdateInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/baseline_arrow_forward_ios_24"
-                    android:layout_marginHorizontal="20dp"
+                    android:text="18"
+                    android:textColor="#0D6EBC"
+                    android:inputType="number"
                     />
 
 
 
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/layLogOut"
+                android:id="@+id/layPass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_margin="20dp"
-                android:layout_below="@+id/layData"
+                android:layout_below="@+id/layAge"
                 >
 
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/baseline_adjust_24"
+                    android:src="@drawable/baseline_enhanced_encryption_24"
                     android:layout_marginHorizontal="20dp"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Log Out "
+                    android:text="Password: "
                     android:textColor="@color/black"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     />
-                <ImageView
+
+                <EditText
+                    android:id="@+id/edPassUpdateInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/baseline_arrow_forward_ios_24"
-                    android:layout_marginHorizontal="20dp"
+                    android:text="elon"
+                    android:textColor="#0D6EBC"
+
                     />
 
-
-
-
             </LinearLayout>
-            <Button
-                android:id="@+id/btnBackProfile"
+            <LinearLayout
+                android:id="@+id/layUpdateBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Back"
-                android:layout_centerHorizontal="true"
+                android:orientation="horizontal"
                 android:layout_margin="20dp"
-                android:background="@drawable/btn_red"
-                android:layout_below="@+id/layLogOut"
-                />
+                android:layout_below="@+id/layPass"
+                android:layout_centerHorizontal="true"
+                >
+                <Button
+                    android:id="@+id/btnUpdateInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Update"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/btn_green"
+
+                    />
+
+                <Button
+                    android:id="@+id/btnBackUpdateInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Back"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/btn_red"
+
+                    />
+            </LinearLayout>
+
+
+
 
 
 

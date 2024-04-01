@@ -16,7 +16,7 @@
         android:theme="@style/Theme.PollutionPals"
         tools:targetApi="31">
         <activity
-            android:name=".UpdateInfoPage"
+            android:name=".UI.UpdateInfoPage.UpdateInfoPage"
             android:exported="false" />
         <activity
             android:name=".UI.MyReportsPage.MyReportsPage"
