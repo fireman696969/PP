@@ -16,11 +16,12 @@ import com.example.pollutionpals.UI.LoginActivity.LoginActivity;
 import com.example.pollutionpals.UI.MyProfilePage.MyProfilePage;
 import com.example.pollutionpals.UI.MyReportsPage.MyReportsPage;
 import com.example.pollutionpals.UI.NewReportPage.NewReportPage;
+import com.example.pollutionpals.UI.QuestionsAndAnswersPage.QuestionsAndAnswersPage;
 
 public class MainPage extends AppCompatActivity implements View.OnClickListener {
     TextView tvUserName;
     MainModule mainModule;
-    Button btnMyProfilePage, btnNewReport, btnMyReports;
+    Button btnMyProfilePage, btnNewReport, btnMyReports, btnQA;
 
 
     @Override
@@ -42,12 +43,15 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener 
         if(mainModule.GetUserId().equals("329455109")){
             btnMyReports.setText("ALL REPORTS");
         }
+        btnQA = findViewById(R.id.btnQA);
+
 
 
 
         btnMyProfilePage.setOnClickListener(this);
         btnNewReport.setOnClickListener(this);
         btnMyReports.setOnClickListener(this);
+        btnQA.setOnClickListener(this);
 
 
     }
@@ -64,6 +68,10 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener 
         }
         if(btnMyReports == view){
             Intent intent = new Intent(this, MyReportsPage.class);
+            startActivity(intent);
+        }
+        if(btnQA == view){
+            Intent intent = new Intent(this, QuestionsAndAnswersPage.class);
             startActivity(intent);
         }
 

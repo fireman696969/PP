@@ -16,6 +16,9 @@
         android:theme="@style/Theme.PollutionPals"
         tools:targetApi="31">
         <activity
+            android:name=".UI.QuestionsAndAnswersPage.QuestionsAndAnswersPage"
+            android:exported="false" />
+        <activity
             android:name=".UI.UpdateInfoPage.UpdateInfoPage"
             android:exported="false" />
         <activity
@@ -49,7 +52,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>
