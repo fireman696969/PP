@@ -73,12 +73,6 @@ public class MyReportsPage extends AppCompatActivity implements View.OnClickList
             cursor = reports.GetReportsById(idSharedPrefrence);
         }
 
-
-
-
-
-
-
         btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(this);
 
@@ -243,7 +237,6 @@ public class MyReportsPage extends AppCompatActivity implements View.OnClickList
                             @Override
                             public void onClick(View v) {
 
-
                                 // add points to citizens in database
                                 int points = cursor.getInt(6);
                                 String id = cursor.getString(1);
@@ -251,8 +244,6 @@ public class MyReportsPage extends AppCompatActivity implements View.OnClickList
 
                                 // change status to approved in database
                                 reports.updateReportStatus(String.valueOf(idReportArr[bigi]),"approved");
-
-
                                 if(cursor.getString(1).equals("329455109")){
                                     // update Shared prefrence
                                     SharedPreferences sharedPreference = getBaseContext().getSharedPreferences("user", Context.MODE_PRIVATE);
