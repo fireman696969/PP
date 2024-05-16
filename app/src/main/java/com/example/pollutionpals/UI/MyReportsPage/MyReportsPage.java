@@ -420,6 +420,7 @@ public class MyReportsPage extends AppCompatActivity implements View.OnClickList
                         TableLayout.LayoutParams params3 = new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                         params3.topMargin = 40;
                         row.setLayoutParams(params3);
+//                        row.setOnClickListener(MyReportsPage.this);
 
                         statusTextView.setGravity(Gravity.CENTER);
                         numTextView.setGravity(Gravity.CENTER);
