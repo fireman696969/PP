@@ -2,6 +2,7 @@ package com.example.pollutionpals.UI.MainPage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.pollutionpals.Data.Repository.Repository;
@@ -28,6 +29,8 @@ public class MainModule {
     public String GetUserId(){
         return sharedPreference.getString("Id", "1");
     }
+
+
 
 
 }
