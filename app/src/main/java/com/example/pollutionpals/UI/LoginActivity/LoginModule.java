@@ -35,17 +35,8 @@ public class LoginModule {
     }
 
 
-    public void SetCredentials(CheckBox checkbox, String Fullname, int Age, int Points, String Id, String Pass) {
-        SharedPreferences sharedPreference = context.getSharedPreferences("user", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreference.edit();
-
-        editor.putString("UserName", Fullname);
-        editor.putInt("Age", Age);
-        editor.putInt("Points",Points);
-        editor.putString("Id", Id);
-        editor.putString("Pass", Pass);
-
-        editor.apply();
+    public void SetCredentials(CheckBox checkbox, String userName, int Age, int Points, String Id, String Pass) {
+        rep.updateSharedPreference(userName, Age, Points, Id, Pass);
 
     }
 
@@ -58,7 +49,7 @@ public class LoginModule {
             MyDatabaseHelper Citizens = new MyDatabaseHelper(context);
             if (Citizens.CheckCitizen(etIdNumber.getText().toString(), etPassword.getText().toString())) {
                 Toast.makeText(context, "exists", Toast.LENGTH_SHORT).show();
-                Cursor cursor = Citizens.getUserById(etIdNumber.getText().toString());
+                Cursor cursor = rep.getUserById(etIdNumber.getText().toString());
 
                 cursor.moveToFirst();
                 String fullname = cursor.getString(1);

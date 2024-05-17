@@ -30,6 +30,12 @@ public class Repository {
         editor.putString("Pass", pass);
         editor.apply();
     }
+    public void logOut(){
+        SharedPreferences.Editor editor = sharedPreference.edit();
+        editor.remove("UserName");
+        editor.clear();
+        editor.apply();
+    }
 
     // connects to reports database
     public Cursor getAllReports(){

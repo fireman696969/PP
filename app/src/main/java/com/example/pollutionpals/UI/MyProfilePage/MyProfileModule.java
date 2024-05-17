@@ -19,12 +19,6 @@ public class MyProfileModule {
         this.context = context;
     }
     public void LogOut(){
-        SharedPreferences sharedPreference = context.getSharedPreferences("user", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreference.edit();
-        editor.remove("UserName");
-        editor.clear();
-        editor.apply();
-
-
+        rep.logOut();
     }
 }
