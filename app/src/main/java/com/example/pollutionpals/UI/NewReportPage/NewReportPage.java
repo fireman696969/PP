@@ -7,6 +7,7 @@ import static androidx.core.content.ContentProviderCompat.requireContext;
 import android.Manifest;
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -142,11 +143,50 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
 
 
     }
-
+    ActivityResultLauncher<String[]> locationPermissionRequest =
+            registerForActivityResult(new ActivityResultContracts
+                            .RequestMultiplePermissions(), result -> {
+                        Boolean fineLocationGranted = result.getOrDefault(
+                                Manifest.permission.ACCESS_FINE_LOCATION, false);
+                        Boolean coarseLocationGranted = result.getOrDefault(
+                                Manifest.permission.ACCESS_COARSE_LOCATION,false);
+                        if (fineLocationGranted != null && fineLocationGranted) {
+                            // Precise location access granted.
+                        } else if (coarseLocationGranted != null && coarseLocationGranted) {
+                            // Only approximate location access granted.
+                        } else {
+                            // No location access granted.
+                        }
+                    }
+            );
     @Override
     public void onClick(View view) {
         if (imgvGetLocation == view) {
-            getLocation();
+
+            //Asking if Location Permission is Granted
+
+            //If not granted asking for permission:
+            locationPermissionRequest.launch(new String[] {
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+            });
+            ProgressDialog pd = new ProgressDialog(this);
+            pd.setTitle("getting address");
+            pd.setCancelable(false);
+            pd.show();
+            getLocation(new locationFetched() {
+                @Override
+                public void onLocationFetched(String address) {
+                    if(address.equals("Address Not Found"))
+                    {
+                        Toast.makeText(context, "Location not found", Toast.LENGTH_SHORT).show();
+                        pd.dismiss();
+                        return;
+                    }
+                    Toast.makeText(context, "Location fetched", Toast.LENGTH_SHORT).show();
+                    pd.dismiss();
+                }
+            });
         }
 
         if (imgvCamera == view) {
@@ -192,9 +232,15 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    public void getLocation() {
+
+    public interface locationFetched
+    {
+        void onLocationFetched(String address);
+    }
+    public void getLocation(locationFetched callback) {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(context, "Location is disabled", Toast.LENGTH_SHORT).show();
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -206,8 +252,6 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
         }
         fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-
-
                     @Override
                     public void onSuccess(Location location) {
                         // Got last known location. In some rare situations this can be null.
@@ -224,7 +268,9 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
+                            callback.onLocationFetched(edLocation.getText().toString());
                         }
+                        else callback.onLocationFetched("Address Not Found");
                     }
                 });
     }
