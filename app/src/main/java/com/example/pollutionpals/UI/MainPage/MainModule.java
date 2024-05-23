@@ -15,7 +15,7 @@ public class MainModule {
     public MainModule(Context context) {
         rep = new Repository(context);
         this.context = context;
-        sharedPreference = context.getSharedPreferences("user", Context.MODE_PRIVATE);
+        sharedPreference = rep.getSharedPreference();
     }
     public String GetUserName(){
         String Username = sharedPreference.getString("UserName", "UserName");

@@ -24,13 +24,14 @@ public class UpdateInfoPage extends AppCompatActivity implements View.OnClickLis
     EditText edFullName, edAge, edPass;
     SharedPreferences sharedPreferences;
     Button btnBack, btnUpdateInfo;
+    UpdateInfoModule updateInfoModule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_info_page);
-
-        sharedPreferences = this.getSharedPreferences("user", Context.MODE_PRIVATE);
+        updateInfoModule = new UpdateInfoModule(this);
+        sharedPreferences = updateInfoModule.getSharedPreferences();
         String fullName = sharedPreferences.getString("UserName","");
         String id = sharedPreferences.getString("Id","");
         int age = sharedPreferences.getInt("Age",-1);

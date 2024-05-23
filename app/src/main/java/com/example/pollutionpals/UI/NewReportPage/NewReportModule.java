@@ -73,17 +73,21 @@ public class NewReportModule {
             }
         });
     }
-    public void AddReportToReports(SharedPreferences sharedpreference, Bitmap photo, EditText edDescription, EditText edLocation, EditText edDate, Spinner pointsSpinner){
-        ReportsDatabase reports = new ReportsDatabase(context);
+    public void AddReportToReports(String id, Bitmap photo, EditText edDescription, EditText edLocation, EditText edDate, Spinner pointsSpinner){
+
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         photo.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byte[] byteArray = stream.toByteArray();
-        reports.AddReport(sharedpreference.getString("Id", "0"),
+                rep.addReport(id,
                 byteArray,
                 edDescription.getText().toString(),
                 edLocation.getText().toString(),
                 edDate.getText().toString(),
                 Integer.parseInt(pointsSpinner.getSelectedItem().toString())  );
+    }
+    public String getId(){
+
+        return rep.getId();
     }
 //    public void Photo( Bitmap photo, ImageView imgvCamera){
 //        ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(

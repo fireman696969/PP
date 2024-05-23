@@ -64,27 +64,28 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
     EditText edDate, edDescription, edLocation;
     Spinner pointsSpinner;
     Button btnSubmit, btnBackNewReport;
-    SharedPreferences sharedpreference;
+
     Bitmap photo;
     ImageView imgvGetLocation;
     FusedLocationProviderClient fusedLocationClient;
     final Context context = this;
+    String user_id;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_report_page);
-        NewReportModule newReoprtsModule = new NewReportModule(this);
 
         imgvCamera = findViewById(R.id.imgvCamera);
         imgvCamera.setOnClickListener(this);
-
+        newReportModule = new NewReportModule(this);
         btnBackNewReport = findViewById(R.id.btnBackNewReport);
         btnBackNewReport.setOnClickListener(this);
 
         imgvGetLocation = findViewById(R.id.imgvGetLocation);
         imgvGetLocation.setOnClickListener(this);
+        user_id = newReportModule.getId();
 
         imgvGetLocation.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -137,7 +138,7 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
 
         edDescription = findViewById(R.id.edDiscription);
         edLocation = findViewById(R.id.edLocation);
-        sharedpreference = this.getSharedPreferences("user", Context.MODE_PRIVATE);
+
 
 
     }
@@ -166,7 +167,7 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
             } else if (Integer.parseInt(pointsSpinner.getSelectedItem().toString()) == 0) {
                 Toast.makeText(this, "Estimate points", Toast.LENGTH_SHORT).show();
             } else {
-                newReportModule.AddReportToReports(sharedpreference, photo, edDescription, edLocation, edDate, pointsSpinner);
+                newReportModule.AddReportToReports(user_id, photo, edDescription, edLocation, edDate, pointsSpinner);
                 Intent intent = new Intent(this, MainPage.class);
                 startActivity(intent);
             }

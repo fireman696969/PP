@@ -36,6 +36,12 @@ public class Repository {
         editor.clear();
         editor.apply();
     }
+    public SharedPreferences getSharedPreference(){
+        return sharedPreference;
+    }
+    public boolean isLoggedIn(){
+        return sharedPreference.contains("UserName");
+    }
 
     // connects to reports database
     public Cursor getAllReports(){
@@ -46,6 +52,9 @@ public class Repository {
     }
     public void updateReportStatus(String reportId, String status){
         DbReports.updateReportStatus(reportId, status);
+    }
+    public void addReport(String id, byte[] imgsrc, String Description, String Location, String Date, Integer Points ){
+        DbReports.AddReport(id, imgsrc, Description, Location, Date, Points);
     }
 
 
@@ -60,5 +69,9 @@ public class Repository {
     public Cursor getUserById(String id){
         return DbCitizens.getUserById(id);
     }
+    public boolean CheckIfAlreadyExists(String IdNumber){
+        return DbCitizens.CheckIfAlreadyExists(IdNumber);
+    }
+
 
 }

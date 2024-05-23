@@ -17,6 +17,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
     private EditText etFullname,  etAge, etId, etPass, etConPass;
     private Button btnSubmit, btnMoveToLog;
+    SignUpModule signUpModule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +33,14 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         btnMoveToLog = findViewById(R.id.btnLogin);
         btnSubmit.setOnClickListener(this);
         btnMoveToLog.setOnClickListener(this);
+
+        signUpModule = new SignUpModule(this);
+
     }
 
     @Override
     public void onClick(View view) {
         if(btnSubmit == view){
-            MyDatabaseHelper Citizens = new MyDatabaseHelper(this);
             if(     etFullname.getText().toString().length() == 0 ||
                     etAge.getText().toString().length() == 0 ||
                     etId.getText().toString().length() == 0 ||
@@ -51,12 +54,12 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             else if(!etConPass.getText().toString().equals(etPass.getText().toString())){
                 Toast.makeText(this, "Confirm right password", Toast.LENGTH_SHORT).show();
             }
-            else if(Citizens.CheckIfAlreadyExists(etId.getText().toString())){
+            else if(signUpModule.CheckIfAlreadyExists(etId.getText().toString())){
                 Toast.makeText(this, "Id already in use", Toast.LENGTH_SHORT).show();
             }
             else{
 
-                Citizens.AddCitizen(etFullname.getText().toString(),
+                signUpModule.AddCitizen(etFullname.getText().toString(),
                         Integer.parseInt(etAge.getText().toString()) ,
                         etId.getText().toString(),
                         etPass.getText().toString()
