@@ -6,9 +6,12 @@ import static androidx.core.content.ContentProviderCompat.requireContext;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -17,6 +20,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
@@ -35,6 +39,7 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.PickVisualMediaRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -67,7 +72,7 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
     Button btnSubmit, btnBackNewReport;
 
     Bitmap photo;
-    ImageView imgvGetLocation;
+    ImageView imgvGetLocation, imgvInformation;
     FusedLocationProviderClient fusedLocationClient;
     final Context context = this;
     String user_id;
@@ -79,6 +84,7 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_new_report_page);
 
         imgvCamera = findViewById(R.id.imgvCamera);
+        imgvCamera.setTag("noPic");
         imgvCamera.setOnClickListener(this);
         newReportModule = new NewReportModule(this);
         btnBackNewReport = findViewById(R.id.btnBackNewReport);
@@ -87,6 +93,8 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
         imgvGetLocation = findViewById(R.id.imgvGetLocation);
         imgvGetLocation.setOnClickListener(this);
         user_id = newReportModule.getId();
+        imgvInformation = findViewById(R.id.imgvGetInformation);
+        imgvInformation.setOnClickListener(this);
 
         imgvGetLocation.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -161,6 +169,14 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
             );
     @Override
     public void onClick(View view) {
+        if(imgvInformation == view){
+
+            Dialog dialog=new Dialog(this);
+            dialog.setContentView(R.layout.information_dialog);
+            dialog.show();
+            dialog.setCancelable(true);
+
+        }
         if (imgvGetLocation == view) {
 
             //Asking if Location Permission is Granted
@@ -190,15 +206,47 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
         }
 
         if (imgvCamera == view) {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            someActivityResultLauncher.launch(intent);
+//            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//            someActivityResultLauncher.launch(intent);
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            dialog.setMessage("Which way would you prefer")
+                    .setPositiveButton("Gallery", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            if(ActivityCompat.checkSelfPermission(NewReportPage.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                                Intent galleryIntent = new Intent(MediaStore.ACTION_PICK_IMAGES);
+                                try {
+                                    GalleryResultLauncher.launch(galleryIntent);
+                                } catch (Exception e)
+                                {
+                                    OlderGalleryResultActivity.launch(new PickVisualMediaRequest.Builder()
+                                            .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
+                                            .build());
+
+                                }
+                            }
+                        }
+                    })
+                    .setNegativeButton("Camera", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            someActivityResultLauncher.launch(cameraIntent);
+
+
+                        }
+                    }).show();
+
         }
         if (edDate == view) {
             // show date dialog
             newReportModule.DateDialog(edDate);
         }
         if (btnSubmit == view) {
-            if (edDescription.getText().toString().equals("")) {
+            if(imgvCamera.getTag().toString().equals("noPic")){
+                Toast.makeText(this, "Add a photo", Toast.LENGTH_SHORT).show();
+            }
+            else if (edDescription.getText().toString().equals("")) {
                 Toast.makeText(this, "Add a Description", Toast.LENGTH_SHORT).show();
             } else if (edLocation.getText().toString().equals("")) {
                 Toast.makeText(this, "Add the location", Toast.LENGTH_SHORT).show();
@@ -292,11 +340,52 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
                         params.addRule(RelativeLayout.BELOW, R.id.tv1);
                         params.addRule(RelativeLayout.CENTER_HORIZONTAL);
                         imgvCamera.setLayoutParams(params);
+                        imgvCamera.setTag("Pic");
 
                     }
                 }
             });
 
-    }
 
+
+ActivityResultLauncher<Intent> GalleryResultLauncher = registerForActivityResult(
+        new ActivityResultContracts.StartActivityForResult(),
+        new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    // There are no request codes
+                    if(!getContentResolver().getType((result.getData().getData())).startsWith("image/"))
+                    {
+                        Toast.makeText(NewReportPage.this, "Images only!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    Uri uriPhoto = result.getData().getData();
+                    imgvCamera.setImageURI(uriPhoto);
+                    try {
+                        photo = Bitmap.createScaledBitmap(MediaStore.Images.Media.getBitmap(getContentResolver(), uriPhoto),240,320, false);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    imgvCamera.setTag("Pic");
+
+                }
+            }
+        });
+    ActivityResultLauncher<PickVisualMediaRequest> OlderGalleryResultActivity =
+            registerForActivityResult(new ActivityResultContracts.PickVisualMedia(), uri -> {
+                if (uri != null) {
+                    // There are no request codes
+                    imgvCamera.setImageURI(uri);
+                    try {
+                        photo = Bitmap.createScaledBitmap(MediaStore.Images.Media.getBitmap(getContentResolver(), uri), 240, 320, false);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    imgvCamera.setTag("Pic");
+                }
+            });
+
+
+}
 

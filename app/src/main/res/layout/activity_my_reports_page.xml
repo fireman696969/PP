@@ -38,6 +38,7 @@
             android:textColor="@color/black"
             />
 
+
             <TableLayout
                 android:id="@+id/tblReports"
                 android:layout_width="match_parent"

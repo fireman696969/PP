@@ -30,7 +30,7 @@ public class MainModule {
         return sharedPreference.getString("Id", "1");
     }
 
-
-
-
+    public SharedPreferences getSharedPreference() {
+        return rep.getSharedPreference();
+    }
 }

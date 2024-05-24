@@ -28,14 +28,14 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
-
-        SharedPreferences sharedPreference = this.getSharedPreferences("user", Context.MODE_PRIVATE);
+        mainModule = new MainModule(this);
+        SharedPreferences sharedPreference = mainModule.getSharedPreference();
         if(sharedPreference.getInt("Age", -1) == -1){
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
         tvUserName = findViewById(R.id.tvUserName);
-        mainModule = new MainModule(this);
+
         tvUserName.setText(mainModule.GetUserName());
         btnMyProfilePage = findViewById(R.id.btnMyProfilePage);
         btnNewReport = findViewById(R.id.btnNewReport);

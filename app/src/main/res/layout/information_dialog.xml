@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="how to estimate points"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textAppearance= "@style/TextAppearance.AppCompat.Headline"
+        />
+    <LinearLayout
+        android:id="@+id/layIdea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv1"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+        >
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="whats the idea"
+            android:textColor="#0D6EBC"
+            android:textSize="16sp"
+            />
+
+        <TextView
+
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="when you open a report card you need to estimate the number of points you think you are entitled to recive from the government (ranging from 1-100). generally small reports like a fallen bin or a polluting garbage truck will get you from 0-50 points  whereas big reports like an oil leakege in the sea or an illegal forest fire can even get you 100 points." />
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layPros"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layIdea"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+    >
+    <TextView
+        android:id="@+id/tv3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pros"
+        android:textColor="#0D6EBC"
+        android:textSize="16sp"
+        />
+
+    <TextView
+
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="you are the master of your own financial destiny! you can estimate the number of points you think you deserve and reason your opinion in the description box."
+        />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layCons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layPros"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+        >
+        <TextView
+            android:id="@+id/tv4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cons"
+            android:textColor="#0D6EBC"
+            android:textSize="16sp"
+            />
+
+        <TextView
+
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="estimate too many points or get greedy and you risk the government will deny your report. for example: if you report a simple pollution law that was broken and you estimate your points at 89 points your report will likely be denied and you wont get a second chance. estimate wisely!"
+            />
+
+
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

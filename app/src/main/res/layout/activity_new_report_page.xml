@@ -106,7 +106,13 @@
                     android:hint="Pick a Date"
                     />
 
-
+                <ImageView
+                    android:id="@+id/imgvGetInformation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edDate"
+                    android:layout_marginTop="74dp"
+                    android:src="@drawable/baseline_information" />
 
 
             </RelativeLayout>
@@ -185,6 +191,8 @@
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     />
+
+
 
                 <Spinner
                     android:layout_width="wrap_content"

@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnLogin.setOnClickListener(this);
         btnSignUp.setOnClickListener(this);
         loginModule = new LoginModule(this);
-        tvUserName = findViewById(R.id.tvUserName);
+        
 
 
     }
