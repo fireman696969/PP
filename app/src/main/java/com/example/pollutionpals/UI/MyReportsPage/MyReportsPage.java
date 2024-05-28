@@ -126,7 +126,7 @@ public class MyReportsPage extends AppCompatActivity implements View.OnClickList
 
                 // Retrieve the data from the cursor
                 String date = cursor.getString(5);
-                String location = cursor.getString(4);
+                String points = cursor.getString(6);
                 String status = cursor.getString(7);
                 String id = cursor.getString(1);
 
@@ -136,7 +136,7 @@ public class MyReportsPage extends AppCompatActivity implements View.OnClickList
                 if (idUser.equals("329455109")) {
                     descriptionTextView.setText(id);
                 } else {
-                    descriptionTextView.setText(location);
+                    descriptionTextView.setText(points);
                 }
                 statusTextView.setText(status);
 
@@ -268,8 +268,10 @@ public class MyReportsPage extends AppCompatActivity implements View.OnClickList
                                 // Change the status to denied
                                 module.updateReportStatus(String.valueOf(idReportArr[bigi]), "denied");
 
-                                // Close the dialog
+                                // Close the dialog and refresh the activity
                                 dialog.cancel();
+                                finish();
+                                startActivity(getIntent());
                             }
                         });
                     }
