@@ -154,6 +154,41 @@
 
 
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layDeleteUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="20dp"
+                android:layout_below="@+id/layLogOut"
+                >
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_delete_forever_24"
+                    android:layout_marginHorizontal="20dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delete User "
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/baseline_arrow_forward_ios_24"
+                    android:layout_marginHorizontal="20dp"
+                    />
+
+
+
+
+            </LinearLayout>
             <Button
                 android:id="@+id/btnBackProfile"
                 android:layout_width="wrap_content"
@@ -162,7 +197,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_margin="20dp"
                 android:background="@drawable/btn_red"
-                android:layout_below="@+id/layLogOut"
+                android:layout_below="@+id/layDeleteUser"
                 />
 
 

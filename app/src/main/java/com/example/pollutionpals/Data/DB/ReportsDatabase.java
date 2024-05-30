@@ -68,6 +68,20 @@ public class ReportsDatabase extends SQLiteOpenHelper {
     }
 
     /**
+     * Method to delete all reports of a specific user ID from the database
+     * @param id - user ID whose reports need to be deleted
+     */
+    public void deleteReportsByUserId(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete(TABLE_NAME, COLUMN_Id + "=?", new String[]{id});
+        if (result == -1) {
+            Toast.makeText(context, "Failed to delete reports for user ID: " + id, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Reports for user ID: " + id + " deleted successfully!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
      * Method to retrieve reports by user ID
      * @param id - user ID
      * @return Cursor containing the report data
@@ -167,163 +181,3 @@ public class ReportsDatabase extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM " + TABLE_NAME);
     }
 }
-
-
-
-//package com.example.pollutionpals.Data.DB;
-//
-//import android.content.ContentValues;
-//import android.content.Context;
-//import android.database.Cursor;
-//import android.database.sqlite.SQLiteDatabase;
-//import android.database.sqlite.SQLiteOpenHelper;
-//import android.util.Log;
-//import android.widget.Toast;
-//
-//import androidx.annotation.Nullable;
-//
-//import java.sql.Blob;
-//
-//public class ReportsDatabase extends SQLiteOpenHelper {
-//    private Context context;
-//    private static final String DATABASE_NAME = "Reports.db";
-//    private static final int DATABASE_VERSION = 1;
-//
-//
-//
-//    private static final String TABLE_NAME = "Reports";
-//    private static final String COLUMN_ReportNum = "ReportNum";
-//    private static final String COLUMN_Id = "Id";
-//    private static final String COLUMN_Img = "Img";
-//    private static final String COLUMN_Description = "Description";
-//    private static final String COLUMN_Location = "Location";
-//    private static final String COLUMN_Date = "Date";
-//    private static final String COLUMN_Points = "Points";
-//    private static final String COLUMN_Status = "Status";
-//
-//
-//
-//
-//
-//    public ReportsDatabase(@Nullable Context context) {
-//        super(context, DATABASE_NAME, null, DATABASE_VERSION);
-//        this.context = context;
-//    }
-//
-//    @Override
-//    public void onCreate(SQLiteDatabase db) {
-//        String query = "CREATE TABLE " + TABLE_NAME +
-//                " (" + COLUMN_ReportNum + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-//                COLUMN_Id + " TEXT, " +
-//                COLUMN_Img + " BLOB, " +
-//                COLUMN_Description + " TEXT, " +
-//                COLUMN_Location + " TEXT, " +
-//                COLUMN_Date + " TEXT, " +
-//                COLUMN_Points + " INTEGER, " +
-//                COLUMN_Status + " TEXT);";
-//        db.execSQL(query);
-//    }
-//    @Override
-//    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
-//        onCreate(db);
-//    }
-//
-//    public Cursor GetReportsById(String id) {
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        String query = "SELECT * FROM "+ TABLE_NAME + " WHERE " + COLUMN_Id + " = '" + id + "'";
-//        Cursor cursor = db.rawQuery(query, null);
-//        cursor.moveToFirst();
-//        return cursor;
-//    }
-//
-//    public void AddReport(String id, byte[] imgsrc, String Description, String Location, String Date, Integer Points ){
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues cv = new ContentValues();
-//
-//        cv.put(COLUMN_Id, id); // id: 1
-//        cv.put(COLUMN_Img, imgsrc); // img: 2
-//        cv.put(COLUMN_Description, Description); // description: 3
-//        cv.put(COLUMN_Location, Location); // location: 4
-//        cv.put(COLUMN_Date, Date); // date: 5
-//        cv.put(COLUMN_Points, Points); // points: 6
-//        String status = "Pending";
-//        cv.put(COLUMN_Status, status); // status: 7
-//
-//
-//
-//
-//
-//        long result = db.insert(TABLE_NAME,null, cv);
-//
-//        if(result == -1){
-//            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
-//        }else {
-//            Toast.makeText(context, "Added report Successfully!", Toast.LENGTH_SHORT).show();
-//        }
-//
-//    }
-//
-//    public Cursor GetAllReports(){
-//        String query = "SELECT * FROM " + TABLE_NAME;
-//        SQLiteDatabase db = this.getReadableDatabase();
-//
-//        Cursor cursor = null;
-//        if(db != null){
-//            cursor = db.rawQuery(query, null);
-//        }
-//        return cursor;
-//    }
-//
-//    public void updateReportStatus(String reportId, String newStatus) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues cv = new ContentValues();
-//        cv.put(COLUMN_Status, newStatus);
-//
-//        long result = db.update(TABLE_NAME, cv, COLUMN_ReportNum + "=?", new String[]{reportId});
-//
-//        if (result == -1) {
-//            Toast.makeText(context, "Failed to update report status", Toast.LENGTH_SHORT).show();
-//        } else {
-//            Toast.makeText(context, "Report status updated successfully!", Toast.LENGTH_SHORT).show();
-//        }
-//    }
-//
-//
-//
-//
-//
-////    public void updateData(String row_id, String Fullname, int Age, String Pass, String Id){
-////        SQLiteDatabase db = this.getWritableDatabase();
-////        ContentValues cv = new ContentValues();
-////        cv.put(COLUMN_Fullname, Fullname);
-////        cv.put(COLUMN_Age, Age);
-////        cv.put(COLUMN_Id, Id);
-////        cv.put(COLUMN_Pass, Pass);
-////
-////        long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{row_id});
-////        if(result == -1){
-////            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
-////        }else {
-////            Toast.makeText(context, "Updated Successfully!", Toast.LENGTH_SHORT).show();
-////        }
-////
-////    }
-//
-//    public void deleteOneRow(String row_id){
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
-//        if(result == -1){
-//            Toast.makeText(context, "Failed to Delete.", Toast.LENGTH_SHORT).show();
-//        }else{
-//            Toast.makeText(context, "Successfully Deleted.", Toast.LENGTH_SHORT).show();
-//        }
-//    }
-//
-//    public void deleteAllData(){
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        db.execSQL("DELETE FROM " + TABLE_NAME);
-//    }
-//
-//
-//}
