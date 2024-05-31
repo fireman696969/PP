@@ -40,7 +40,8 @@
                 android:hint="Full Name"
                 android:inputType="text"
                 android:textColor="@color/black"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                android:maxLength="15"/>
 
             <EditText
                 android:id="@+id/etAge"
@@ -49,7 +50,8 @@
                 android:hint="Age"
                 android:inputType="number"
                 android:textColor="@color/black"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                android:maxLength="3"/>
 
             <EditText
                 android:id="@+id/etIDNumber"
@@ -70,7 +72,7 @@
                 android:inputType="textPassword"
                 android:textColor="@color/black"
                 android:textSize="16dp"
-                android:maxLength="20"/>
+                android:maxLength="15"/>
 
             <EditText
                 android:id="@+id/etConfirmPassword"
@@ -79,7 +81,8 @@
                 android:hint="Confirm Password"
                 android:inputType="textPassword"
                 android:textColor="@color/black"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                android:maxLength="15"/>
 
 
             <Button

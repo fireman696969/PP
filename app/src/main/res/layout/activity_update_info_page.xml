@@ -78,6 +78,7 @@
                    android:text="Elon Levy"
                    android:textColor="#0D6EBC"
                    android:inputType="text"
+                   android:maxLength="15"
                    />
 
 
@@ -114,6 +115,7 @@
                     android:text="18"
                     android:textColor="#0D6EBC"
                     android:inputType="number"
+                    android:maxLength="2"
                     />
 
 
@@ -150,6 +152,7 @@
                     android:layout_height="wrap_content"
                     android:text="elon"
                     android:textColor="#0D6EBC"
+                    android:maxLength="15"
 
                     />
 
