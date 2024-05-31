@@ -72,7 +72,7 @@ public class NewReportModule {
         dateDialog.setOnDateSetListener(new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                edDate.setText(i + "/ " + (i1+1) + " / " + i2);
+                edDate.setText(i2 + "/ " + (i1+1) + " / " + i);
                 y=i;
                 m= i1;
                 d= i2;
