@@ -36,9 +36,6 @@ public class UpdateInfoModule {
     public void updateSharedPreference(String userName, int age, int points, String id, String pass){
         repository.updateSharedPreference(userName,age,points,id,pass);
     }
-    public SharedPreferences getSharedPreference(){
-        return repository.getSharedPreference();
-    }
 }
 
 
