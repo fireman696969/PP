@@ -4,7 +4,6 @@ package com.example.pollutionpals.UI.LoginActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,7 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.pollutionpals.MainActivity;
+import com.example.pollutionpals.Data.DB.MyDatabaseHelper;
+import com.example.pollutionpals.Data.DB.ReportsDatabase;
 import com.example.pollutionpals.R;
 import com.example.pollutionpals.UI.MainPage.MainPage;
 import com.example.pollutionpals.UI.SignUp.SignUp;
@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         // check if the user is still connected, if so move him to the main page
         SharedPreferences sharedPreference = loginModule.getSharedPreference();
-        if(!(sharedPreference.getInt("Age", -1) == -1)){
+        if(!(sharedPreference.getString("UserName","").isEmpty())){
             Intent intent = new Intent(this, MainPage.class);
             startActivity(intent);
         }

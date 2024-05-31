@@ -206,10 +206,10 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public boolean CheckIfAlreadyExists(String IdNumber) {
         boolean result = false;
         try {
-            String query = " SELECT EXISTS (\n" +
-                    "  SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_Id + " = '" + IdNumber + ")";
+
             SQLiteDatabase db = this.getReadableDatabase();
-            Cursor cursor = db.rawQuery(query, null);
+            String query = "SELECT EXISTS (SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_Id + " = ?)";
+            Cursor cursor = db.rawQuery(query, new String[]{IdNumber});
 
             if (cursor != null) {
                 if (cursor.moveToFirst()) {
@@ -218,10 +218,22 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 }
                 cursor.close();
             }
+            return result;
         } catch (Exception e) {
             Log.d("exception", " here");
             result = false;
         }
         return result;
+    }
+    // Method to delete the entire table.
+    public void deleteTable() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        try {
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+            Toast.makeText(context, "Table deleted successfully.", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(context, "Failed to delete the table.", Toast.LENGTH_SHORT).show();
+            Log.d("exception", "Error occurred while deleting the table: " + e.getMessage());
+        }
     }
 }

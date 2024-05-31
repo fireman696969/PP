@@ -170,7 +170,7 @@ public class NewReportPage extends AppCompatActivity implements View.OnClickList
             });
             ProgressDialog pd = new ProgressDialog(this);
             pd.setTitle("getting address");
-            pd.setCancelable(false);
+            pd.setCancelable(true);
             pd.show();
             getLocation(new locationFetched() {
                 @Override

@@ -180,4 +180,18 @@ public class ReportsDatabase extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME);
     }
+    /**
+     * Method to delete the entire Reports table.
+     */
+    public void deleteTable() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        try {
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+            Toast.makeText(context, "Table deleted successfully.", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(context, "Failed to delete the table.", Toast.LENGTH_SHORT).show();
+            Log.d("exception", "Error occurred while deleting the table: " + e.getMessage());
+        }
+    }
+
 }

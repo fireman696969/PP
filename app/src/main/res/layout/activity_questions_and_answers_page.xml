@@ -9,139 +9,147 @@
     android:background="#0D6EBC"
 
     >
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="18dp"
-        app:cardElevation="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-        <RelativeLayout
+        >
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="Questions And Answers"
-                android:textSize="20dp"
-                android:textColor="@color/black"
-                android:id="@+id/tv1"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"
-                />
-
-            <LinearLayout
-                android:id="@+id/layQuestionsAndAnswers"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:layout_below="@+id/tv1"
-                android:layout_marginTop="20dp">
-
-                <!-- Question 1 -->
+                android:layout_height="match_parent"
+                >
                 <TextView
-                    android:textColor="#0D6EBC"
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Q: How do I report pollution using the app?"
-                    android:textStyle="bold" />
-
-                <TextView
+                    android:layout_centerHorizontal="true"
+                    android:text="Questions And Answers"
+                    android:textSize="20dp"
                     android:textColor="@color/black"
+                    android:id="@+id/tv1"
+                    android:textStyle="bold"
+                    android:layout_marginTop="20dp"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/layQuestionsAndAnswers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="A: To report pollution, simply navigate to the 'Report' section of the app and fill out the Report-card with details about the pollution incident, including location, description, and any relevant photos." />
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:layout_below="@+id/tv1"
+                    android:layout_marginTop="20dp">
 
-                <!-- Question 2 -->
-                <TextView
-                    android:textColor="#0D6EBC"
-                    android:layout_marginTop="15dp"
-                    android:layout_width="match_parent"
+                    <!-- Question 1 -->
+                    <TextView
+                        android:textColor="#0D6EBC"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Q: How do I report pollution using the app?"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="A: To report pollution, simply navigate to the 'Report' section of the app and fill out the Report-card with details about the pollution incident, including location, description, and any relevant photos." />
+
+                    <!-- Question 2 -->
+                    <TextView
+                        android:textColor="#0D6EBC"
+                        android:layout_marginTop="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Q: What types of pollution can I report?"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="A: You can report various types of pollution, including littering, illegal dumping, air pollution, water pollution, noise pollution, and more." />
+
+                    <!-- Question 3 -->
+                    <TextView
+                        android:textColor="#0D6EBC"
+                        android:layout_marginTop="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Q: How are points earned?"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="A: Points are earned by submitting pollution reports. Each valid report earns you a certain number of points, which are added to your profile." />
+
+                    <!-- Question 4 -->
+                    <TextView
+                        android:textColor="#0D6EBC"
+                        android:layout_marginTop="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Q: What can I do with my accumulated points?"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="A: Accumulated points reflect your commitment to environmental stewardship. While they do not have a direct monetary value, they contribute to your profile's reputation as a responsible citizen." />
+
+                    <!-- Question 5 -->
+                    <TextView
+                        android:textColor="#0D6EBC"
+                        android:layout_marginTop="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Q: How can I contact support if I encounter any issues with the app?"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="A: Yes, you can contact us through our global email: s55109@nhs.co.il or by phone: +972547472243. Either way, we are here for you!" />
+
+                    <!-- Add more questions and answers as needed -->
+
+                </LinearLayout>
+                <Button
+                    android:id="@+id/btnBackQA"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Q: What types of pollution can I report?"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="A: You can report various types of pollution, including littering, illegal dumping, air pollution, water pollution, noise pollution, and more." />
-
-                <!-- Question 3 -->
-                <TextView
-                    android:textColor="#0D6EBC"
-                    android:layout_marginTop="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Q: How are points earned?"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="A: Points are earned by submitting pollution reports. Each valid report earns you a certain number of points, which are added to your profile." />
-
-                <!-- Question 4 -->
-                <TextView
-                    android:textColor="#0D6EBC"
-                    android:layout_marginTop="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Q: What can I do with my accumulated points?"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="A: Accumulated points reflect your commitment to environmental stewardship. While they do not have a direct monetary value, they contribute to your profile's reputation as a responsible citizen." />
-
-                <!-- Question 5 -->
-                <TextView
-                    android:textColor="#0D6EBC"
-                    android:layout_marginTop="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Q: How can I contact support if I encounter any issues with the app?"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:textColor="@color/black"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="A: Yes, you can contact us through our global email: s55109@nhs.co.il or by phone: +972547472243. Either way, we are here for you!" />
-
-                <!-- Add more questions and answers as needed -->
-
-            </LinearLayout>
-            <Button
-                android:id="@+id/btnBackQA"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Back"
-                android:layout_below="@+id/layQuestionsAndAnswers"
-                android:layout_margin="20dp"
-                android:background="@drawable/btn_red"
-                android:layout_centerHorizontal="true"
-                />
+                    android:text="Back"
+                    android:layout_below="@+id/layQuestionsAndAnswers"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/btn_red"
+                    android:layout_centerHorizontal="true"
+                    />
 
 
 
-        </RelativeLayout>
+            </RelativeLayout>
 
 
 
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+
+
+    </ScrollView>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
