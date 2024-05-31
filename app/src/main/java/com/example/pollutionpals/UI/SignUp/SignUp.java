@@ -70,7 +70,10 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 Toast.makeText(this, "Confirm right password", Toast.LENGTH_SHORT).show();
             } else if (signUpModule.CheckIfAlreadyExists(etId.getText().toString())) {
                 Toast.makeText(this, "Id already in use", Toast.LENGTH_SHORT).show();
-            } else {
+            }
+            else if(etId.getText().toString().length()<9){
+                Toast.makeText(this, "Id must be 9 characters long", Toast.LENGTH_SHORT).show();
+            }else {
                 // Add new citizen
                 signUpModule.AddCitizen(etFullname.getText().toString(),
                         Integer.parseInt(etAge.getText().toString()),

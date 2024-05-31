@@ -59,7 +59,8 @@
                 android:inputType="number"
                 android:textColor="@color/black"
                 android:textSize="16dp"
-                android:maxLength="9"/>
+                android:maxLength="9"
+                />
 
             <EditText
                 android:id="@+id/etPassword"
