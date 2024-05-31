@@ -58,7 +58,7 @@ public class MyReportsModule {
      * @param id The ID of the user.
      * @param points The new points to be updated.
      */
-    public void updatePointsById(String id, int points){
+        public void updatePointsById(String id, int points){
         rep.updatePointsById(id, points);
     }
 

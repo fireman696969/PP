@@ -46,7 +46,8 @@
                 android:layout_marginTop="32dp"
                 android:inputType="number"
                 android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"/>
+                android:layout_marginRight="15dp"
+                android:maxLength="9"/>
 
             <EditText
                 android:id="@+id/etPassword"
@@ -57,7 +58,8 @@
                 android:layout_below="@id/etIdNumber"
                 android:layout_marginTop="16dp"
                 android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"/>
+                android:layout_marginRight="15dp"
+                android:maxLength="20"/>
 
             <Button
                 android:id="@+id/btnLogin"
