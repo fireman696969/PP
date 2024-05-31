@@ -82,12 +82,12 @@ public class UpdateInfoPage extends AppCompatActivity implements View.OnClickLis
      * Updates the user information in the database.
      */
     public void UpdateInfo() {
-        MyDatabaseHelper citizens = new MyDatabaseHelper(this);
+
         String id = tvId.getText().toString().trim();
         String fullname = edFullName.getText().toString().trim();
         int age = Integer.parseInt(edAge.getText().toString().trim());
         String pass = edPass.getText().toString().trim();
-        citizens.UpdateInfoById(id, fullname, age, pass);
+        updateInfoModule.UpdateInfoById(id,fullname,age,pass);
     }
 
     /**
@@ -98,18 +98,9 @@ public class UpdateInfoPage extends AppCompatActivity implements View.OnClickLis
         String fullname = edFullName.getText().toString().trim();
         int age = Integer.parseInt(edAge.getText().toString().trim());
         String pass = edPass.getText().toString().trim();
-
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove("UserName");
-        editor.remove("Id");
-        editor.remove("Pass");
-
-        editor.putString("UserName", fullname);
-        editor.putInt("Age", age);
-        editor.putString("Id", id);
-        editor.putString("Pass", pass);
-
-        editor.apply();
+        sharedPreferences = updateInfoModule.getSharedPreferences();
+        int points = sharedPreferences.getInt("Points", 0);
+        updateInfoModule.updateSharedPreference(fullname, age, points, id, pass );
     }
 }
 

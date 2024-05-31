@@ -177,4 +177,7 @@ public class Repository {
     public boolean CheckIfAlreadyExists(String IdNumber) {
         return DbCitizens.CheckIfAlreadyExists(IdNumber);
     }
+    public void UpdateInfoById(String id, String fullname, int age, String pass){
+        DbCitizens.UpdateInfoById(id, fullname, age, pass);
+    }
 }

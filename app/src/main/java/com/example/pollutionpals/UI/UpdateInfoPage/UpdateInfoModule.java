@@ -30,6 +30,15 @@ public class UpdateInfoModule {
     public SharedPreferences getSharedPreferences() {
         return repository.getSharedPreference();
     }
+    public void UpdateInfoById(String id, String fullname, int age, String pass){
+        repository.UpdateInfoById(id,fullname,age,pass);
+    }
+    public void updateSharedPreference(String userName, int age, int points, String id, String pass){
+        repository.updateSharedPreference(userName,age,points,id,pass);
+    }
+    public SharedPreferences getSharedPreference(){
+        return repository.getSharedPreference();
+    }
 }
 
 
