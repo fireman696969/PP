@@ -94,6 +94,15 @@ public class MyReportsModule {
     public void updateSharedPreference(String userName, int age, int points, String id, String pass){
         rep.updateSharedPreference(userName, age, points, id, pass);
     }
+
+    public Cursor getReportsByIdSortedByStatus(String id){
+        return rep.getReportsByIdSortedByStatus(id);
+    }
+    public Cursor getAllReportsSortedByStatus(){
+        return rep.getAllReportsSortedByStatus();
+    }
+
+
 }
 
 

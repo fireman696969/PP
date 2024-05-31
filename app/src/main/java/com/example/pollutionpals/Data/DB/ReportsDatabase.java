@@ -194,4 +194,42 @@ public class ReportsDatabase extends SQLiteOpenHelper {
         }
     }
 
+
+
+    /**
+     * Method to retrieve all reports for a given user ID sorted by status in descending order.
+     * @param id - user ID
+     * @return Cursor containing all report data for the given ID sorted by status descending
+     */
+    public Cursor getReportsByIdSortedByStatus(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query(
+                TABLE_NAME,
+                null,                         // Select all columns
+                COLUMN_Id + "=?",             // Selection criteria: where ID matches
+                new String[]{id},             // Selection arguments: user ID
+                null,                         // No group by
+                null,                         // No having
+                COLUMN_Status + " ASC"       // Order by status ascending
+        );
+    }
+
+    /**
+     * Method to retrieve all reports sorted by status in descending order.
+     * @return Cursor containing all report data sorted by status descending
+     */
+    public Cursor getAllReportsSortedByStatus() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query(
+                TABLE_NAME,
+                null,                   // Select all columns
+                null,                   // No selection criteria
+                null,                   // No selection arguments
+                null,                   // No group by
+                null,                   // No having
+                COLUMN_Status + " ASC" // Order by status ascending
+        );
+    }
+
+
 }

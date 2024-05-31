@@ -37,16 +37,17 @@
             android:text="My Reports"
             android:textColor="@color/black"
             />
-        <LinearLayout
-            android:id="@+id/laySort"
-            android:layout_below="@+id/tvMyReports"
-            android:layout_width="match_parent"
+        <CheckBox
+            android:layout_below="@id/tvMyReports"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="Sort by Status"
+            android:layout_weight="1"
+            android:id="@+id/srtStatus"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            />
 
-
-
-        </LinearLayout>
 
             <TableLayout
                 android:id="@+id/tblReports"
@@ -55,7 +56,7 @@
 
 
                 android:layout_margin="20dp"
-                android:layout_below="@+id/tvMyReports"
+                android:layout_below="@+id/srtStatus"
                 android:layout_centerHorizontal="true"
                 >
                 <TableRow
