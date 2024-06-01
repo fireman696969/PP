@@ -115,7 +115,7 @@
                     android:text="18"
                     android:textColor="#0D6EBC"
                     android:inputType="number"
-                    android:maxLength="2"
+                    android:maxLength="3"
                     />
 
 
