@@ -237,7 +237,6 @@ public class MyReportsPage extends AppCompatActivity implements View.OnClickList
 
                 // Move the cursor to the clicked row
                 cursor.moveToPosition(i);
-
                 // Get the report data from the cursor
                 String idPerson = cursor.getString(1);
                 String date = cursor.getString(5);
